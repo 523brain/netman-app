@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">NetMan</string>
+    <string name="action_settings">Settings</string>
+    <string name="tv_IP">IP</string>
+    <string name="tv_bit">Bits</string>
+    <string name="tv_netmask">Netmask</string>
+    <string name="bt_berechnen">Go</string>
+    <string name="tv_example_ip">255.255.255.255</string>
+    <string name="tv_first_client">Erster Client</string>
+    <string name="tv_last_client">Letzter Client</string>
+    <string name="tv_max_clients">Max. Clients</string>
+    <string name="tv_broadcast">Broadcast</string>
+    <string name="tv_example_hex">FFFFFFFF</string>
+
+</resources>
