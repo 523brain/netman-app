@@ -1,4 +1,4 @@
 netman-app
 ==========
 
-Andorid App Netman for IT Specialist
+Android App Netman for IT Specialist
