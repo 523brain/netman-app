@@ -50,23 +50,35 @@ public class Main extends Activity {
     	EditText mask = (EditText)findViewById(R.id.EditTextNetmask);
     	
     	//Begin Validation Check
-    	//Extra Klasse 
+    	//FELD IP
     	if (ip.getText().toString().isEmpty()){
     		showDialog(20);
     		return false;
-    	}
-    	if (bit.getText().toString().isEmpty()==false){
-    		if (Integer.parseInt(bit.getText().toString())>32 || Integer.parseInt(bit.getText().toString())<0){
-    	    	showDialog(21);
-    	    	return false;
-    		}
     	} else {
+    		if(checkIp(ip.getText().toString())==false){
+    			showDialog(30);
+        		return false;
+    		}
+    	}
+    	//FELD Bit
+    	if (bit.getText().toString().isEmpty()){
     		showDialog(21);
     		return false;
+    	} else {
+    		if (Integer.parseInt(bit.getText().toString())>32 || Integer.parseInt(bit.getText().toString())<0){
+    	    	showDialog(31);
+    	    	return false;
+    		}
     	}
+    	//FELD Netmask
     	if (mask.getText().toString().isEmpty()){
     		showDialog(22);
     		return false;
+    	} else {
+    		if(checkIp(ip.getText().toString())==false){
+    			showDialog(32);
+        		return false;
+    		}
     	}
     	//End Validation Check
     	
@@ -86,10 +98,25 @@ public class Main extends Activity {
     	return true;
     }
     
+    public static boolean checkIp (String sip)
+    {
+        String [] parts = sip.split ("\\.");
+        if ( parts.length != 3 ){
+        	return false;
+        }
+        for (String s : parts){
+            int i = Integer.parseInt (s);
+            if (i < 0 || i > 255){
+                return false;
+            }
+        }
+        return true;
+    } 
+    
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
     	// Menu actions
-    	if (item.toString().equals("Schlie�en")){
+    	if (item.toString().equals("Schließen")){
     		showDialog(10);
     	}
     	return true;
@@ -124,6 +151,15 @@ public class Main extends Activity {
     		break;
     	case 22:
     		Toast.makeText(getApplicationContext(), "Fehler bei der Netmask Eingabe!", Toast.LENGTH_LONG).show();
+    		break;
+    	case 30:
+    		Toast.makeText(getApplicationContext(), "Fehler keine valide IP Eingabe!", Toast.LENGTH_LONG).show();
+    		break;
+    	case 31:
+    		Toast.makeText(getApplicationContext(), "Fehler keine gültige Bit Eingabe!", Toast.LENGTH_LONG).show();
+    		break;
+    	case 32:
+    		Toast.makeText(getApplicationContext(), "Fehler keine valide Netmask Eingabe!", Toast.LENGTH_LONG).show();
     		break;
     	}
     	return super.onCreateDialog(id);
