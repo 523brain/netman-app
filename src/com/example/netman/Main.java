@@ -41,7 +41,7 @@ public class Main extends Activity {
     	TextView tv_first_client = (TextView)findViewById(R.id.tv_first_client);
     	TextView tv_last_client = (TextView)findViewById(R.id.tv_last_client);
     	TextView tv_broadcast = (TextView)findViewById(R.id.tv_boradcast);
-    	TextView tvh_max_client = (TextView)findViewById(R.id.tvh_max_client);
+    	TextView tvhex = (TextView)findViewById(R.id.tvhex);
     	TextView tvh_first_client = (TextView)findViewById(R.id.tvh_first_client);
     	TextView tvh_last_client = (TextView)findViewById(R.id.tvh_last_client);
     	TextView tvh_broadcast = (TextView)findViewById(R.id.tvh_broadcast);
@@ -85,6 +85,7 @@ public class Main extends Activity {
     	//End Validation Check
     	
     	String bIP = "";
+    	String tmp = "";
     	String [] subs = ip.getText().toString().split ("\\.");
     	for (String s : subs){
     		if(Integer.toBinaryString(Integer.parseInt(s)).length()<8){
@@ -94,16 +95,61 @@ public class Main extends Activity {
     			bIP = bIP + Integer.toBinaryString(Integer.parseInt(s));
     		} else {
     			bIP = bIP + Integer.toBinaryString(Integer.parseInt(s));
-    		}
-    		 		
+    		}	
     	}
+    	
     	String netbin = bIP.substring(0,Integer.parseInt(bit.getText().toString()));
-        netbin = splitBinary(netbin,".");
-        DecimalFormat x = new DecimalFormat ("#");
-        tv_max_client.setText(x.format(Math.pow(2,(32-Integer.parseInt(bit.getText().toString())))));
-        tv_first_client.setText(BinTailToDec(netbin+"1"));
-        tv_last_client.setText(BinTailToDec(netbin+"11111110"));
-    	tv_broadcast.setText(BinTailToDec(netbin+"11111111"));
+    	netbin = splitBinary(netbin,".");
+    	
+    	//Max Client
+    	DecimalFormat x = new DecimalFormat ("#");
+        String maxaddress = x.format(Math.pow(2,(32-Integer.parseInt(bit.getText().toString()))));
+        tv_max_client.setText(String.valueOf((Integer.parseInt(maxaddress)-2)));
+        
+        //First Client
+        tmp = "";
+    	for (int i=0;i<(32-Integer.parseInt(bit.getText().toString()));i++){
+    		tmp = tmp + "0";
+    		if (i==7 || i==15 || i==23){
+    			tmp = tmp + ".";
+    		}
+    	}
+    	tmp = new StringBuffer(tmp).reverse().toString();
+    	if ((netbin.length()+tmp.length())>35){
+        	netbin = netbin.substring(0,(netbin.length()-(netbin.length()+tmp.length()-35)));
+        }
+    	tv_first_client.setText(BinTailToDec(netbin+tmp.substring(0,(tmp.length()-1))+"1"));
+    	tvh_first_client.setText(BinTailToHex(netbin+tmp.substring(0,(tmp.length()-1))+"1"));
+    	
+        //Last Client
+        tmp = "";
+    	for (int i=0;i<(32-Integer.parseInt(bit.getText().toString()));i++){
+    		tmp = tmp + "1";
+    		if (i==7 || i==15 || i==23){
+    			tmp = tmp + ".";
+    		}
+    	}
+    	tmp = new StringBuffer(tmp).reverse().toString();
+    	if ((netbin.length()+tmp.length())>35){
+        	netbin = netbin.substring(0,(netbin.length()-(netbin.length()+tmp.length()-35)));
+        }
+    	tv_last_client.setText(BinTailToDec(netbin+tmp.substring(0,(tmp.length()-1))+"0"));
+    	tvh_last_client.setText(BinTailToHex(netbin+tmp.substring(0,(tmp.length()-1))+"0"));
+    	
+        //Broadcast Client
+        tmp = "";
+    	for (int i=0;i<(32-Integer.parseInt(bit.getText().toString()));i++){
+    		tmp = tmp + "1";
+    		if (i==7 || i==15 || i==23){
+    			tmp = tmp + ".";
+    		}
+    	}
+    	tmp = new StringBuffer(tmp).reverse().toString();
+        if ((netbin.length()+tmp.length())>35){
+        	netbin = netbin.substring(0,(netbin.length()-(netbin.length()+tmp.length()-35)));
+        }
+    	tv_broadcast.setText(BinTailToDec(netbin+tmp));
+    	tvh_broadcast.setText(BinTailToHex(netbin+tmp));
     	
     	//Set Result Data Visible
     	TextViewMaxClient.setVisibility(1);
@@ -114,7 +160,7 @@ public class Main extends Activity {
     	tv_first_client.setVisibility(1);
     	tv_last_client.setVisibility(1);
     	tv_broadcast.setVisibility(1);
-    	tvh_max_client.setVisibility(1);
+    	tvhex.setVisibility(1);
     	tvh_first_client.setVisibility(1);
     	tvh_last_client.setVisibility(1);
     	tvh_broadcast.setVisibility(1);
@@ -123,17 +169,51 @@ public class Main extends Activity {
     
     public String splitBinary(String input, String sym){
     	String all = "";
+    	String fill = "";
     	String tmp = input;
     	if (tmp.length()<=8){
-    		all = tmp.substring(0,8)+".";
+    		if (tmp.length()<=16){
+    			for (int i=tmp.length();i<8;i++){
+    				fill = fill + "0";
+    			}
+    		}
+    		all = tmp.substring(0,tmp.length())+fill+".";
     	}
     	if (tmp.length()>8 && tmp.length()<=16){
-    		all = tmp.substring(0,8)+"."+tmp.substring(8,16)+".";
+    		fill = "";
+    		if (tmp.length()<=16){
+    			for (int i=tmp.length();i<16;i++){
+    				fill = fill + "0";
+    			}
+    		}
+    		all = tmp.substring(0,8)+"."+tmp.substring(8,tmp.length())+fill+".";
     	}
     	if (tmp.length()>16){
-    		all = tmp.substring(0,8)+"."+tmp.substring(8,16)+"."+tmp.substring(16, 24)+".";
+    		fill = "";
+    		if (tmp.length()<=24){
+    			for (int i=tmp.length();i<24;i++){
+    				fill = fill + "0";
+    			}
+    		}
+    		all = tmp.substring(0,8)+"."+tmp.substring(8,16)+"."+tmp.substring(16,tmp.length())+fill+".";
     	}
     	return all;
+    }
+    
+    public String BinTailToHex(String tail)
+    {
+        String all ="";
+        int j = 0;
+        String [] parts = tail.split ("\\.");
+        for (String s : parts){
+        	j++;
+        	if (j>3){
+        		all = all + Integer.toHexString(Integer.parseInt(s,2));
+        	} else {
+        		all = all + Integer.toHexString(Integer.parseInt(s,2))+".";
+        	}
+        }
+        return all.toUpperCase().toString();
     }
     
     public String BinTailToDec(String tail)
@@ -148,8 +228,6 @@ public class Main extends Activity {
         	} else {
         		all = all + String.valueOf(Integer.parseInt(s,2))+".";
         	}
-        	//Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
-        	//Toast.makeText(getApplicationContext(), String.valueOf(Integer.parseInt(s,2)), Toast.LENGTH_LONG).show();
         }
         return all;
     }

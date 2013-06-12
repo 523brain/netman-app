@@ -13,5 +13,6 @@
     <string name="tv_max_clients">Max. Clients</string>
     <string name="tv_broadcast">Broadcast</string>
     <string name="tv_example_hex">FFFFFFFF</string>
+    <string name="tv_hex">Hex:</string>
 
 </resources>

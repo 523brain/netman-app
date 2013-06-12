@@ -22,7 +22,7 @@
         android:inputType="numberDecimal"
         android:maxLength="2"
         android:maxLines="1"
-        android:text="24"
+        android:text="22"
         android:textStyle="normal"
         android:typeface="normal" />
 
@@ -180,14 +180,14 @@
         android:visibility="invisible" />
 
     <TextView
-        android:id="@+id/tvh_max_client"
+        android:id="@+id/tvhex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/tv_max_client"
         android:layout_alignBottom="@+id/tv_max_client"
         android:layout_alignLeft="@+id/textViewNetmask"
         android:layout_marginLeft="26dp"
-        android:text="@string/tv_example_hex"
+        android:text="@string/tv_hex"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:visibility="invisible" />
 
@@ -196,7 +196,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/TextViewLastClient"
-        android:layout_alignLeft="@+id/tvh_max_client"
+        android:layout_alignLeft="@+id/tvhex"
         android:text="@string/tv_example_hex"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:visibility="invisible" />
