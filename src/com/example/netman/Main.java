@@ -1,8 +1,10 @@
 package com.example.netman;
 
+import java.net.InetAddress;
 import java.text.DecimalFormat;
-
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -16,15 +18,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Main extends Activity {
-
+	
+	@SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
     }
-
-
-    @Override
+	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
@@ -51,6 +54,9 @@ public class Main extends Activity {
     	EditText bit = (EditText)findViewById(R.id.EditTextBits);
     	EditText mask = (EditText)findViewById(R.id.EditTextNetmask);
     	
+    	//Work obejects
+    	String tmp = "";
+    	
     	//Begin Validation Check
     	//FELD IP
     	if (ip.getText().toString().isEmpty()){
@@ -62,30 +68,44 @@ public class Main extends Activity {
         		return false;
     		}
     	}
-    	//FELD Bit
-    	if (bit.getText().toString().isEmpty()){
+    	//FELD BIT & MASK 
+    	if (bit.getText().toString().isEmpty() && mask.getText().toString().isEmpty()){
     		showDialog(21);
     		return false;
     	} else {
-    		if (Integer.parseInt(bit.getText().toString())>32 || Integer.parseInt(bit.getText().toString())<0){
-    	    	showDialog(31);
-    	    	return false;
+    		if (bit.getText().toString().isEmpty()){ 
+    			if(checkIp(ip.getText().toString())){
+    				if (bit.getText().toString().isEmpty()){
+        				String [] subs = ip.getText().toString().split ("\\.");
+        				for (String s : subs){
+        					tmp = tmp +String.valueOf(Integer.toBinaryString(Integer.parseInt(s)).length());
+        				}
+        				bit.setText(tmp);
+        			}
+    			} else {    			
+        			showDialog(32);
+            		return false;
+        		}	
     		}
-    	}
-    	//FELD Netmask
-    	if (mask.getText().toString().isEmpty()){
-    		showDialog(22);
-    		return false;
-    	} else {
-    		if(checkIp(ip.getText().toString())==false){
-    			showDialog(32);
-        		return false;
+    		if (mask.getText().toString().isEmpty()){ 			 	
+    			if (Integer.parseInt(bit.getText().toString())>32){
+	            	showDialog(31);
+	            	return false;
+	        	}
+	    		for(int i=1;i<=Integer.parseInt(bit.getText().toString());i++){
+	    			tmp = tmp + "1";
+	    		}
+	    		String fill = "";
+	    		for (int i=tmp.length();i<32;i++){
+	    			tmp = tmp + "0";    				
+	    		}
+	    		mask.setText(BinTailToDec(splitBinary(tmp.substring(0,24),".")+tmp.substring(24,tmp.length())));   			
     		}
     	}
     	//End Validation Check
     	
+    	//Begin Berechnung
     	String bIP = "";
-    	String tmp = "";
     	String [] subs = ip.getText().toString().split ("\\.");
     	for (String s : subs){
     		if(Integer.toBinaryString(Integer.parseInt(s)).length()<8){
@@ -150,6 +170,7 @@ public class Main extends Activity {
         }
     	tv_broadcast.setText(BinTailToDec(netbin+tmp));
     	tvh_broadcast.setText(BinTailToHex(netbin+tmp));
+    	//Ende Berechnung
     	
     	//Set Result Data Visible
     	TextViewMaxClient.setVisibility(1);
@@ -250,6 +271,9 @@ public class Main extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
     	// Menu actions
+    	if (item.toString().equals("Ping")){
+    		setContentView(R.layout.ping);
+    	}
     	if (item.toString().equals("Schließen")){
     		showDialog(10);
     	}
@@ -281,10 +305,7 @@ public class Main extends Activity {
     		Toast.makeText(getApplicationContext(), "Fehler bei der IP Eingabe!", Toast.LENGTH_LONG).show();
     		break;
     	case 21:
-    		Toast.makeText(getApplicationContext(), "Fehler bei der Bit Eingabe!", Toast.LENGTH_LONG).show();
-    		break;
-    	case 22:
-    		Toast.makeText(getApplicationContext(), "Fehler bei der Netmask Eingabe!", Toast.LENGTH_LONG).show();
+    		Toast.makeText(getApplicationContext(), "Fehler bitte Bits oder Netmask angeben!", Toast.LENGTH_LONG).show();
     		break;
     	case 30:
     		Toast.makeText(getApplicationContext(), "Fehler keine valide IP Eingabe!", Toast.LENGTH_LONG).show();
@@ -295,7 +316,43 @@ public class Main extends Activity {
     	case 32:
     		Toast.makeText(getApplicationContext(), "Fehler keine valide Netmask Eingabe!", Toast.LENGTH_LONG).show();
     		break;
+    	case 40:
+    		Toast.makeText(getApplicationContext(), "Es besteht keine Netzwerkverbindung!", Toast.LENGTH_LONG).show();
     	}
     	return super.onCreateDialog(id);
     }
+    
+    
+    //////////////////////////////////////////
+    ///////////// PING VIEW //////////////////
+    //////////////////////////////////////////
+    
+    public void goPing(View view){
+    	EditText ip = (EditText)findViewById(R.id.EditTextHost);
+    	TextView pingtext = (TextView)findViewById(R.id.textViewPingResult);
+    	String message = "";
+    	try {
+    	      InetAddress host = InetAddress.getByName( ip.getText().toString() );
+    	      for (int i=0;i<4;i++){
+    	    	  long        tm   = System.nanoTime();    	      
+        	      if (host.isReachable(5000)){
+        	    	  tm = (System.nanoTime() - tm) / 1000000L;
+        	      	  message = message + "Ping OK (time = " + tm + " ms). \n";
+        	          
+        	      } else {
+        	    	  message = message + "No responde: Time out.\n";
+        	      }
+        	      pingtext.setText(message);
+        	      if (pingtext.VISIBLE==0){
+        	    	  pingtext.setVisibility(1);
+        	      }
+    	      }    	      
+              message = message+"Host Address = "+host.getHostAddress()+"\nHost Name    = "+host.getHostName();
+    	      pingtext.setText(message);
+    	      
+    	} catch( Exception ex ) {
+    		Toast.makeText(getApplicationContext(), "Error: "+ex.getMessage(), Toast.LENGTH_LONG).show();
+    	}
+    }
+    
 }
