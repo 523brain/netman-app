@@ -16,6 +16,7 @@ import android.content.pm.ActivityInfo;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -117,17 +118,16 @@ public class Main extends Activity {
     public boolean goOn(View view){
     	//Result Data Objects
     	TextView TextViewMaxClient = (TextView)findViewById(R.id.TextViewMaxClient);
-    	TextView textViewFirstClient = (TextView)findViewById(R.id.textViewFirstClient);
+    	Button textViewFirstClient = (Button)findViewById(R.id.TextViewFirstClient);
     	TextView TextViewLastClient = (TextView)findViewById(R.id.TextViewLastClient);
     	TextView TextViewBroadcast = (TextView)findViewById(R.id.TextViewBroadcast);
     	TextView tv_max_client = (TextView)findViewById(R.id.tv_max_client);
     	TextView tv_first_client = (TextView)findViewById(R.id.tv_first_client);
     	TextView tv_last_client = (TextView)findViewById(R.id.tv_last_client);
     	TextView tv_broadcast = (TextView)findViewById(R.id.tv_boradcast);
-    	TextView tvhex = (TextView)findViewById(R.id.tvhex);
     	TextView tvh_first_client = (TextView)findViewById(R.id.tvh_first_client);
     	TextView tvh_last_client = (TextView)findViewById(R.id.tvh_last_client);
-    	TextView tvh_broadcast = (TextView)findViewById(R.id.tvh_broadcast);
+    	TextView tvh_broadcast = (TextView)findViewById(R.id.tvh_broadbast);
     	
     	//Inputs fields for calculation
     	EditText ip = (EditText)findViewById(R.id.EditTextIP);
@@ -261,7 +261,6 @@ public class Main extends Activity {
     	tv_first_client.setVisibility(1);
     	tv_last_client.setVisibility(1);
     	tv_broadcast.setVisibility(1);
-    	tvhex.setVisibility(1);
     	tvh_first_client.setVisibility(1);
     	tvh_last_client.setVisibility(1);
     	tvh_broadcast.setVisibility(1);
