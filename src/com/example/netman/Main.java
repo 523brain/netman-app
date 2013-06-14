@@ -3,6 +3,7 @@ package com.example.netman;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.DecimalFormat;
+
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.annotation.SuppressLint;
@@ -334,9 +335,8 @@ public class Main extends Activity {
     
     public void CreatePing(){
     	EditText ip = (EditText)findViewById(R.id.EditTextHost);
-    	String iA;
 		try {
-			iA = InetAddress.getLocalHost().getHostAddress();
+			String iA = InetAddress.getLocalHost().getHostAddress();
 			ip.setText(iA);
 		} catch (UnknownHostException e) {
 			//e.printStackTrace();

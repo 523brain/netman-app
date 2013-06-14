@@ -19,7 +19,6 @@
         android:inputType="text|numberDecimal"
         android:maxLength="15"
         android:maxLines="1"
-        android:text="192.168.150.2"
         android:textStyle="normal"
         android:typeface="normal" />
 
