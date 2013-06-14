@@ -1,6 +1,7 @@
 package com.example.netman;
 
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.text.DecimalFormat;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -30,14 +31,15 @@ public class Main extends Activity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
     }
+	
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-    
-    public boolean goOn(View view){
+
+	public boolean goOn(View view){
     	//Result Data Objects
     	TextView TextViewMaxClient = (TextView)findViewById(R.id.TextViewMaxClient);
     	TextView textViewFirstClient = (TextView)findViewById(R.id.textViewFirstClient);
@@ -276,6 +278,7 @@ public class Main extends Activity {
     	// Menu actions
     	if (item.toString().equals("Ping")){
     		setContentView(R.layout.ping);
+    		CreatePing();
     	}
     	if (item.toString().equals("Schließen")){
     		showDialog(10);
@@ -324,12 +327,23 @@ public class Main extends Activity {
     	}
     	return super.onCreateDialog(id);
     }
-    
-    
+      
     //////////////////////////////////////////
     ///////////// PING VIEW //////////////////
     //////////////////////////////////////////
     
+    public void CreatePing(){
+    	EditText ip = (EditText)findViewById(R.id.EditTextHost);
+    	String iA;
+		try {
+			iA = InetAddress.getLocalHost().getHostAddress();
+			ip.setText(iA);
+		} catch (UnknownHostException e) {
+			//e.printStackTrace();
+			Toast.makeText(getApplicationContext(),"Error: Kann keine Netzwerkdaten finden", Toast.LENGTH_LONG).show();
+		}
+    }
+      
     public void goPing(View view){
     	EditText ip = (EditText)findViewById(R.id.EditTextHost);
     	TextView pingtext = (TextView)findViewById(R.id.textViewPingResult);
@@ -346,15 +360,14 @@ public class Main extends Activity {
         	    	  message = message + "No responde: Time out.\n";
         	      }
         	      pingtext.setText(message);
-        	      if (pingtext.VISIBLE==0){
-        	    	  pingtext.setVisibility(1);
-        	      }
+        	      pingtext.setVisibility(1);
     	      }    	      
               message = message+"Host Address = "+host.getHostAddress()+"\nHost Name    = "+host.getHostName();
     	      pingtext.setText(message);
     	      
-    	} catch( Exception ex ) {
-    		Toast.makeText(getApplicationContext(), "Error: "+ex.getMessage(), Toast.LENGTH_LONG).show();
+    	} catch( Exception e ) {
+    		//e.printStackTrace();
+    		Toast.makeText(getApplicationContext(), "Error: Ping Failed", Toast.LENGTH_LONG).show();
     	}
     }
     
