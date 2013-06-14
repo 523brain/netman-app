@@ -39,8 +39,67 @@ public class Main extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-
-	public boolean goOn(View view){
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+    	// Menu actions
+    	if (item.toString().equals("Ping")){
+    		setContentView(R.layout.ping);
+    		CreatePing();
+    	}
+    	if (item.toString().equals("Schließen")){
+    		showDialog(10);
+    	}
+    	return true;
+    }
+    
+    @Override
+    protected Dialog onCreateDialog(int id){
+    	switch (id){
+    	case 10:
+    		Builder builder = new AlertDialog.Builder(this);
+    		builder.setMessage("Applikation wird geschlossen!");
+    		builder.setCancelable(true);
+    		
+    		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+    			public void onClick(DialogInterface dialog, int which){
+    				Main.this.finish();
+    			}
+    		});
+    		builder.setNegativeButton("Nein, doch nicht!", new DialogInterface.OnClickListener() {
+    			public void onClick(DialogInterface dialog, int which){
+    				Toast.makeText(getApplicationContext(), "Applikation wird fortgesetzt", Toast.LENGTH_LONG).show();
+    			}
+    		});
+    		AlertDialog dialog = builder.create();
+    		dialog.show();
+    		break;
+    	case 20:
+    		Toast.makeText(getApplicationContext(), "Fehler bei der IP Eingabe!", Toast.LENGTH_LONG).show();
+    		break;
+    	case 21:
+    		Toast.makeText(getApplicationContext(), "Fehler bitte Bits oder Netmask angeben!", Toast.LENGTH_LONG).show();
+    		break;
+    	case 30:
+    		Toast.makeText(getApplicationContext(), "Fehler keine valide IP Eingabe!", Toast.LENGTH_LONG).show();
+    		break;
+    	case 31:
+    		Toast.makeText(getApplicationContext(), "Fehler keine gültige Bit Eingabe!", Toast.LENGTH_LONG).show();
+    		break;
+    	case 32:
+    		Toast.makeText(getApplicationContext(), "Fehler keine valide Netmask Eingabe!", Toast.LENGTH_LONG).show();
+    		break;
+    	case 40:
+    		Toast.makeText(getApplicationContext(), "Es besteht keine Netzwerkverbindung!", Toast.LENGTH_LONG).show();
+    	}
+    	return super.onCreateDialog(id);
+    }
+      
+    //////////////////////////////////////////
+    ///////////// Netmask VIEW ///////////////
+    //////////////////////////////////////////
+    
+    public boolean goOn(View view){
     	//Result Data Objects
     	TextView TextViewMaxClient = (TextView)findViewById(R.id.TextViewMaxClient);
     	TextView textViewFirstClient = (TextView)findViewById(R.id.textViewFirstClient);
@@ -274,61 +333,6 @@ public class Main extends Activity {
         return true;
     } 
     
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-    	// Menu actions
-    	if (item.toString().equals("Ping")){
-    		setContentView(R.layout.ping);
-    		CreatePing();
-    	}
-    	if (item.toString().equals("Schließen")){
-    		showDialog(10);
-    	}
-    	return true;
-    }
-    
-    @Override
-    protected Dialog onCreateDialog(int id){
-    	switch (id){
-    	case 10:
-    		Builder builder = new AlertDialog.Builder(this);
-    		builder.setMessage("Applikation wird geschlossen!");
-    		builder.setCancelable(true);
-    		
-    		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-    			public void onClick(DialogInterface dialog, int which){
-    				Main.this.finish();
-    			}
-    		});
-    		builder.setNegativeButton("Nein, doch nicht!", new DialogInterface.OnClickListener() {
-    			public void onClick(DialogInterface dialog, int which){
-    				Toast.makeText(getApplicationContext(), "Applikation wird fortgesetzt", Toast.LENGTH_LONG).show();
-    			}
-    		});
-    		AlertDialog dialog = builder.create();
-    		dialog.show();
-    		break;
-    	case 20:
-    		Toast.makeText(getApplicationContext(), "Fehler bei der IP Eingabe!", Toast.LENGTH_LONG).show();
-    		break;
-    	case 21:
-    		Toast.makeText(getApplicationContext(), "Fehler bitte Bits oder Netmask angeben!", Toast.LENGTH_LONG).show();
-    		break;
-    	case 30:
-    		Toast.makeText(getApplicationContext(), "Fehler keine valide IP Eingabe!", Toast.LENGTH_LONG).show();
-    		break;
-    	case 31:
-    		Toast.makeText(getApplicationContext(), "Fehler keine gültige Bit Eingabe!", Toast.LENGTH_LONG).show();
-    		break;
-    	case 32:
-    		Toast.makeText(getApplicationContext(), "Fehler keine valide Netmask Eingabe!", Toast.LENGTH_LONG).show();
-    		break;
-    	case 40:
-    		Toast.makeText(getApplicationContext(), "Es besteht keine Netzwerkverbindung!", Toast.LENGTH_LONG).show();
-    	}
-    	return super.onCreateDialog(id);
-    }
-      
     //////////////////////////////////////////
     ///////////// PING VIEW //////////////////
     //////////////////////////////////////////
