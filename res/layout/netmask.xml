@@ -1,0 +1,220 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
+    android:gravity="top"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".Main" >
+
+    <EditText
+        android:id="@+id/EditTextBits"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/EditTextIP"
+        android:layout_alignBottom="@+id/EditTextIP"
+        android:layout_marginLeft="19dp"
+        android:layout_toRightOf="@+id/EditTextIP"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:maxLength="2"
+        android:maxLines="1"
+        android:text="22"
+        android:textStyle="normal"
+        android:typeface="normal" >
+
+        <requestFocus />
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/EditTextIP"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textViewIP"
+        android:layout_toRightOf="@+id/textViewIP"
+        android:ems="10"
+        android:inputType="text|numberDecimal"
+        android:maxLength="15"
+        android:maxLines="1"
+        android:text="192.168.150.2"
+        android:textStyle="normal"
+        android:typeface="normal" >
+    </EditText>
+
+    <TextView
+        android:id="@+id/textViewIP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="@string/tv_IP"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/textViewNetmask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/EditTextBits"
+        android:layout_toRightOf="@+id/EditTextBits"
+        android:text="@string/tv_netmask"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/textViewBits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/EditTextIP"
+        android:layout_toRightOf="@+id/EditTextIP"
+        android:text="@string/tv_bit"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <EditText
+        android:id="@+id/EditTextNetmask"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textViewNetmask"
+        android:layout_toRightOf="@+id/textViewNetmask"
+        android:ems="10"
+        android:inputType="text|numberDecimal"
+        android:maxLength="15"
+        android:maxLines="1"
+        android:textStyle="normal"
+        android:typeface="normal" />
+
+    <Button
+        android:id="@+id/buttonGo"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/EditTextNetmask"
+        android:height="38dip"
+        android:minWidth="45dp"
+        android:onClick="goOn"
+        android:text="@string/bt_berechnen" />
+
+    <TextView
+        android:id="@+id/textViewFirstClient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/tv_first_client"
+        android:text="@string/tv_first_client"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tv_boradcast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/TextViewBroadcast"
+        android:layout_alignLeft="@+id/tv_last_client"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tv_max_client"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_first_client"
+        android:layout_alignTop="@+id/TextViewMaxClient"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/TextViewMaxClient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textViewFirstClient"
+        android:layout_alignLeft="@+id/textViewFirstClient"
+        android:layout_alignRight="@+id/TextViewLastClient"
+        android:layout_marginBottom="14dp"
+        android:text="@string/tv_max_clients"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tv_last_client"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/TextViewLastClient"
+        android:layout_toLeftOf="@+id/textViewNetmask"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tv_first_client"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_last_client"
+        android:layout_centerVertical="true"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/TextViewLastClient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewFirstClient"
+        android:layout_below="@+id/tv_first_client"
+        android:layout_marginTop="14dp"
+        android:text="@string/tv_last_client"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/TextViewBroadcast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextViewLastClient"
+        android:layout_below="@+id/TextViewLastClient"
+        android:layout_marginTop="16dp"
+        android:text="@string/tv_broadcast"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tvhex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_max_client"
+        android:layout_alignBottom="@+id/tv_max_client"
+        android:layout_alignLeft="@+id/textViewNetmask"
+        android:layout_marginLeft="26dp"
+        android:text="@string/tv_hex"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tvh_first_client"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/TextViewLastClient"
+        android:layout_alignLeft="@+id/tvhex"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tvh_last_client"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/TextViewLastClient"
+        android:layout_alignBottom="@+id/TextViewLastClient"
+        android:layout_alignLeft="@+id/tvh_first_client"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tvh_broadcast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/TextViewBroadcast"
+        android:layout_alignBottom="@+id/TextViewBroadcast"
+        android:layout_alignLeft="@+id/tvh_last_client"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:visibility="invisible" />
+
+</RelativeLayout>

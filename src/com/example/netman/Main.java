@@ -27,8 +27,8 @@ public class Main extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        //this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
     }
@@ -43,7 +43,10 @@ public class Main extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
     	// Menu actions
-    	if (item.toString().equals("Ping")){
+    	if (item.toString().equals("Network Calculator")){
+    		setContentView(R.layout.netmask);
+    	}
+    	if (item.toString().equals("Network Tools")){
     		setContentView(R.layout.ping);
     		CreatePing();
     	}
@@ -94,7 +97,19 @@ public class Main extends Activity {
     	}
     	return super.onCreateDialog(id);
     }
-      
+    
+    //////////////////////////////////////////
+    /////////////   Main VIEW  ///////////////
+    //////////////////////////////////////////
+    
+    public void ClickMainNetcalc(View view){
+    	setContentView(R.layout.netmask);
+    }
+
+	public void ClickMainNetTools(View view){
+		setContentView(R.layout.ping);
+	}
+    
     //////////////////////////////////////////
     ///////////// Netmask VIEW ///////////////
     //////////////////////////////////////////
