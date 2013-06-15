@@ -6,7 +6,6 @@ import java.text.DecimalFormat;
 
 import android.os.Bundle;
 import android.os.StrictMode;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -52,10 +51,11 @@ public class Main extends Activity {
     	}
     	if (item.toString().equals("Network Calculator")){
     		setContentView(R.layout.netmask);
+    		loadNetmask();
     	}
     	if (item.toString().equals("Network Tools")){
     		setContentView(R.layout.ping);
-    		CreatePing();
+    		loadPing();
     	}
     	if (item.toString().equals("Schließen")){
     		showDialog(10);
@@ -148,9 +148,6 @@ public class Main extends Activity {
     	String dataReturned2 = someData.getString("Bit",null);
     	String dataReturned3 = someData.getString("Mask",null);
         
-    	Toast.makeText(getApplicationContext(),dataReturned1, Toast.LENGTH_LONG).show();
-    	Toast.makeText(getApplicationContext(),dataReturned2, Toast.LENGTH_LONG).show();
-    	
         if (dataReturned1!=null){
         	ip.setText(dataReturned1);
         }
@@ -177,7 +174,7 @@ public class Main extends Activity {
     	EditText bit = (EditText)findViewById(R.id.EditTextBits);
     	EditText mask = (EditText)findViewById(R.id.EditTextNetmask);
     	
-    	//Work obejects
+    	//Work object
     	String tmp = "";
     	
     	//Begin Validation Check
@@ -432,17 +429,6 @@ public class Main extends Activity {
         	ip.setText(dataReturned1);
         }
 	}
-	
-    public void CreatePing(){
-    	EditText ip = (EditText)findViewById(R.id.EditTextPingIP);
-		try {
-			String iA = InetAddress.getLocalHost().getHostAddress();
-			ip.setText(iA);
-		} catch (UnknownHostException e) {
-			//e.printStackTrace();
-			Toast.makeText(getApplicationContext(),"Error: Kann keine Netzwerkdaten finden", Toast.LENGTH_LONG).show();
-		}
-    }
       
     public void goPing(View view){
     	EditText ip = (EditText)findViewById(R.id.EditTextPingIP);
