@@ -5,10 +5,10 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/textViewIPPing"
+        android:id="@+id/PingLabelIP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tv_IP"
+        android:text="@string/LabelIP"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
@@ -23,17 +23,16 @@
         android:typeface="normal" />
 
     <Button
-        android:id="@+id/buttonPing"
+        android:id="@+id/ButtonPing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="goPing"
-        android:text="@string/bt_berechnen" />
+        android:text="@string/ButtonPing" />
 
     <TextView
         android:id="@+id/textViewPingResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:visibility="invisible" />
 
 </LinearLayout>

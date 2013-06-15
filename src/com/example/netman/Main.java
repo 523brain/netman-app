@@ -16,7 +16,6 @@ import android.content.pm.ActivityInfo;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -117,17 +116,13 @@ public class Main extends Activity {
     
     public boolean goOn(View view){
     	//Result Data Objects
-    	TextView TextViewMaxClient = (TextView)findViewById(R.id.TextViewMaxClient);
-    	Button textViewFirstClient = (Button)findViewById(R.id.TextViewFirstClient);
-    	TextView TextViewLastClient = (TextView)findViewById(R.id.TextViewLastClient);
-    	TextView TextViewBroadcast = (TextView)findViewById(R.id.TextViewBroadcast);
-    	TextView tv_max_client = (TextView)findViewById(R.id.tv_max_client);
-    	TextView tv_first_client = (TextView)findViewById(R.id.tv_first_client);
-    	TextView tv_last_client = (TextView)findViewById(R.id.tv_last_client);
-    	TextView tv_broadcast = (TextView)findViewById(R.id.tv_boradcast);
-    	TextView tvh_first_client = (TextView)findViewById(R.id.tvh_first_client);
-    	TextView tvh_last_client = (TextView)findViewById(R.id.tvh_last_client);
-    	TextView tvh_broadcast = (TextView)findViewById(R.id.tvh_broadbast);
+    	EditText tv_max_client = (EditText)findViewById(R.id.ResultMaxClient);
+    	EditText tv_first_client = (EditText)findViewById(R.id.ResultFirstClient);
+    	EditText tv_last_client = (EditText)findViewById(R.id.ResultLastClient);
+    	EditText tv_broadcast = (EditText)findViewById(R.id.ResultBroadcast);
+    	EditText tvh_first_client = (EditText)findViewById(R.id.ResultHexFirst);
+    	EditText tvh_last_client = (EditText)findViewById(R.id.ResultHexLast);
+    	EditText tvh_broadcast = (EditText)findViewById(R.id.ResultHexBroadcast);
     	
     	//Inputs fields for calculation
     	EditText ip = (EditText)findViewById(R.id.EditTextIP);
@@ -252,18 +247,14 @@ public class Main extends Activity {
     	tvh_broadcast.setText(BinTailToHex(netbin+tmp));
     	//Ende Berechnung
     	
-    	//Set Result Data Visible
-    	TextViewMaxClient.setVisibility(1);
-    	textViewFirstClient.setVisibility(1);
-    	TextViewLastClient.setVisibility(1);
-    	TextViewBroadcast.setVisibility(1);
+    	/*Set Result Data Visible
     	tv_max_client.setVisibility(1);
     	tv_first_client.setVisibility(1);
     	tv_last_client.setVisibility(1);
     	tv_broadcast.setVisibility(1);
     	tvh_first_client.setVisibility(1);
     	tvh_last_client.setVisibility(1);
-    	tvh_broadcast.setVisibility(1);
+    	tvh_broadcast.setVisibility(1);*/
     	return true;
     }
     

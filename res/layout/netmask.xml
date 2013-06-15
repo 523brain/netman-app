@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/dark"
+    android:background="@drawable/metal"
     tools:context=".MainActivity" >
 
     <LinearLayout
@@ -12,52 +12,70 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
         android:background="@android:color/black"
-        android:gravity="center_vertical" >
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/textViewIP"
+            android:id="@+id/LabelIP"
             android:layout_width="33dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="1dp"
+            android:layout_marginLeft="4dp"
             android:layout_marginTop="1dp"
             android:background="#2295f0"
             android:clickable="false"
-            android:text="IP"
+            android:text="@string/LabelIP"
             android:textColor="@android:color/white"
             android:textSize="14sp" />
 
         <EditText
             android:id="@+id/EditTextIP"
-            android:layout_width="wrap_content"
+            android:layout_width="158dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
             android:layout_marginTop="1dp"
             android:background="#292929"
             android:ems="10"
+            android:inputType="numberDecimal"
+            android:maxLength="15"
+            android:paddingLeft="33dp"
             android:textColor="@android:color/white"
-            android:textSize="14sp" >
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:typeface="sans" />
 
-            <requestFocus android:layout_width="match_parent" />
-        </EditText>
+            <requestFocus
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/textViewBits"
-            android:layout_width="33dp"
-            android:layout_height="30dp"
-            android:background="#2295f0"
-            android:clickable="false"
-            android:text="Bit"
-            android:textColor="@android:color/white"
-            android:textSize="14sp" />
+            <Button
+                android:id="@+id/LabelBit"
+                android:layout_width="33dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="2dp"
+                android:background="#2295f0"
+                android:clickable="false"
+                android:text="@string/LabelBit"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
 
-        <EditText
-            android:id="@+id/EditTextBits"
-            android:layout_width="55dp"
-            android:layout_height="wrap_content"
-            android:background="#292929"
-            android:ems="10"
-            android:textColor="@android:color/white"
-            android:textSize="14sp" />
+            <EditText
+                android:id="@+id/EditTextBits"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="4dp"
+                android:background="#292929"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:maxLength="2"
+                android:paddingLeft="20dp"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -70,96 +88,71 @@
         android:background="@android:color/black" >
 
         <Button
-            android:id="@+id/textViewNetmask"
+            android:id="@+id/LabelNetmask"
             android:layout_width="33dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="1dp"
+            android:layout_marginLeft="4dp"
             android:layout_marginTop="1dp"
             android:background="#2295f0"
             android:clickable="false"
-            android:text="SNM"
+            android:text="@string/LabelNetmask"
             android:textColor="@android:color/white"
             android:textSize="12sp" />
 
         <EditText
             android:id="@+id/EditTextNetmask"
-            android:layout_width="wrap_content"
+            android:layout_width="158dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
             android:layout_marginTop="1dp"
             android:background="#292929"
             android:ems="10"
+            android:inputType="numberDecimal"
+            android:maxLength="15"
+            android:paddingLeft="33dp"
             android:textColor="@android:color/white"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:typeface="sans" />
 
         <Button
-            android:id="@+id/textViewHost"
+            android:id="@+id/LabelHost"
             android:layout_width="33dp"
             android:layout_height="30dp"
+            android:layout_marginLeft="2dp"
             android:background="#2295f0"
             android:clickable="false"
             android:longClickable="false"
-            android:text="Host"
+            android:text="@string/LabelHost"
             android:textColor="@android:color/white"
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/EditTextHost"
-            android:layout_width="56dp"
+            android:id="@+id/EditText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="4dp"
             android:background="#292929"
             android:ems="10"
             android:enabled="false"
+            android:inputType="none"
+            android:paddingLeft="20dp"
             android:textColor="@android:color/white"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:typeface="sans" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout3"
-        android:layout_width="500dp"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:background="#292929"
-        android:orientation="vertical" >
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="500dp"
-        android:layout_height="83dp"
-        android:layout_above="@+id/linearLayout3"
-        android:layout_alignParentLeft="true"
-        android:background="@android:color/black"
-        android:gravity="center_vertical" >
-
-        <Button
-            android:id="@+id/buttonGo"
-            android:layout_width="159dp"
-            android:layout_height="80dp"
-            android:background="#292929"
-            android:text="Calculate"
-            android:textColor="@android:color/white"
-            android:textSize="16sp" />
-
-        <Button
-            android:id="@+id/buttonReset"
-            android:layout_width="159dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="1dp"
-            android:background="#2295f0"
-            android:text="Reset"
-            android:textColor="@android:color/white"
-            android:textSize="16sp" />
-    </LinearLayout>
-
-    <LinearLayout
         android:layout_width="300dp"
-        android:layout_height="140dp"
+        android:layout_height="155dp"
         android:layout_alignLeft="@+id/LinearLayout01"
         android:layout_below="@+id/LinearLayout01"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="47dp"
         android:background="@android:color/black"
         android:orientation="vertical" >
 
@@ -170,26 +163,26 @@
             android:gravity="center_vertical" >
 
             <Button
-                android:id="@+id/TextViewMaxClient"
+                android:id="@+id/LabelMaxClient"
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
-                android:layout_marginLeft="1dp"
+                android:layout_marginLeft="30dp"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/black"
                 android:clickable="false"
-                android:enabled="false"
-                android:text="Max Clients :"
+                android:text="@string/LabelMaxClient"
                 android:textColor="#04ff22"
                 android:textSize="12sp" />
 
             <EditText
-                android:id="@+id/tv_max_client"
+                android:id="@+id/ResultMaxClient"
                 android:layout_width="79dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="1dp"
-                android:ems="10"
                 android:enabled="false"
+                android:ems="10"
+                android:inputType="text"
                 android:textColor="#04ff22"
                 android:textSize="12sp" />
 
@@ -203,50 +196,53 @@
             android:gravity="center_vertical" >
 
             <Button
-                android:id="@+id/TextViewFirstClient"
+                android:id="@+id/LabelFirstClient"
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
-                android:layout_marginLeft="1dp"
+                android:layout_marginLeft="30dp"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/black"
                 android:clickable="false"
-                android:text="First Client :"
+                android:text="@string/LabelFirstClient"
                 android:textColor="#04ff22"
                 android:textSize="12sp" />
 
             <EditText
-                android:id="@+id/tv_first_client"
+                android:id="@+id/ResultFirstClient"
                 android:layout_width="79dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/black"
+                android:enabled="false"
+                android:inputType="text"
                 android:ems="10"
                 android:textColor="#04ff22"
                 android:textSize="12sp" />
 
             <Button
-                android:id="@+id/TextViewHexFirstClient"
+                android:id="@+id/LabelHexFirst"
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
                 android:layout_marginLeft="1dp"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/black"
                 android:clickable="false"
-                android:text="FC HEX :"
+                android:text="@string/LabelHexBroadcast"
                 android:textColor="#04ff22"
                 android:textSize="12sp" />
 
             <EditText
-                android:id="@+id/tvh_first_client"
-                android:layout_width="64dp"
+                android:id="@+id/ResultHexFirst"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/black"
                 android:ems="10"
+                android:inputType="text"
+                android:enabled="false"
                 android:textColor="#04ff22"
                 android:textSize="12sp" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -257,50 +253,53 @@
             android:gravity="center_vertical" >
 
             <Button
-                android:id="@+id/TextViewLastClient"
+                android:id="@+id/LabelLastClient"
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
-                android:layout_marginLeft="1dp"
+                android:layout_marginLeft="30dp"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/black"
                 android:clickable="false"
-                android:text="Last Client :"
+                android:text="@string/LabelLastClient"
                 android:textColor="#04ff22"
                 android:textSize="12sp" />
 
             <EditText
-                android:id="@+id/tv_last_client"
+                android:id="@+id/ResultLastClient"
                 android:layout_width="79dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/black"
+                android:inputType="text"
+                android:enabled="false"
                 android:ems="10"
                 android:textColor="#04ff22"
                 android:textSize="12sp" />
 
             <Button
-                android:id="@+id/TextViewHexLastClient"
+                android:id="@+id/LabelHexLast"
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
                 android:layout_marginLeft="1dp"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/black"
                 android:clickable="false"
-                android:text="LC HEX :"
+                android:text="@string/LabelHexLast"
                 android:textColor="#04ff22"
                 android:textSize="12sp" />
 
             <EditText
-                android:id="@+id/tvh_last_client"
-                android:layout_width="64dp"
+                android:id="@+id/ResultHexLast"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/black"
+                android:inputType="text"
+                android:enabled="false"
                 android:ems="10"
                 android:textColor="#04ff22"
                 android:textSize="12sp" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -311,51 +310,90 @@
             android:gravity="center_vertical" >
 
             <Button
-                android:id="@+id/TextViewBroadcast"
+                android:id="@+id/LabelBroadcast"
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
-                android:layout_marginLeft="1dp"
+                android:layout_marginLeft="30dp"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/black"
                 android:clickable="false"
-                android:text="Broadcast :"
+                android:text="@string/LabelBroadcast"
                 android:textColor="#04ff22"
                 android:textSize="12sp" />
 
             <EditText
-                android:id="@+id/tv_boradcast"
+                android:id="@+id/ResultBroadcast"
                 android:layout_width="78dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/black"
+                android:inputType="text"
                 android:ems="10"
                 android:textColor="#04ff22"
+                android:enabled="false"
                 android:textSize="12sp" />
 
             <Button
-                android:id="@+id/TextViewHexBroadcast"
+                android:id="@+id/LabelHexBroadcast"
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
                 android:layout_marginLeft="1dp"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/black"
                 android:clickable="false"
-                android:text="BC HEX :"
+                android:text="@string/LabelHexBroadcast"
                 android:textColor="#04ff22"
                 android:textSize="12sp" />
 
             <EditText
-                android:id="@+id/tvh_broadbast"
-                android:layout_width="64dp"
+                android:id="@+id/ResultHexBroadcast"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/black"
+                android:inputType="text"
                 android:ems="10"
                 android:textColor="#04ff22"
+                android:enabled="false"
                 android:textSize="12sp" />
-
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="500dp"
+        android:layout_height="83dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@android:color/black"
+        android:gravity="center_vertical" >
+
+        <Button
+            android:id="@+id/ButtonCalculate"
+            android:layout_width="146dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:background="#292929"
+            android:text="@string/ButtonCalculate"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/ButtonReset"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:background="#2295f0"
+            android:text="@string/ButtonReset"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
     </LinearLayout>
 
 </RelativeLayout>

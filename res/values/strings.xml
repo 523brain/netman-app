@@ -3,21 +3,22 @@
     
     <string name="app_name">NetMan</string>
     <string name="action_settings">Settings</string>
-    <string name="tv_IP">IP</string>
-    <string name="tv_bit">Bits</string>
-    <string name="tv_netmask">SNM</string>
-	<string name="tv_host">Host</string>
+    <string name="LabelIP">IP</string>
+    <string name="LabelBit">Bits</string>
+    <string name="LabelNetmask">SNM</string>
+	<string name="LabelHost">Host</string>
 	
-    <string name="tv_first_client">First Client</string>
-    <string name="tv_last_client">Last Client</string>
-    <string name="tv_max_clients">Max Clients</string>
-    <string name="tv_broadcast">Broadcast</string>
-    <string name="tvh_first_client">FC Hex :</string>
-    <string name="tvh_last_client">LC Hex :</string>
-    <string name="tvh_broadcast">BC Hex :</string>
+    <string name="LabelFirstClient">First Client</string>
+    <string name="LabelLastClient">Last Client</string>
+    <string name="LabelMaxClient">Max Clients</string>
+    <string name="LabelBroadcast">Broadcast</string>
+    <string name="LabelHexFirst">FC Hex :</string>
+    <string name="LabelHexLast">LC Hex :</string>
+    <string name="LabelHexBroadcast">BC Hex :</string>
     
-    <string name="bt_berechnen">Calculate</string>
-    <string name="bt_reset">Reset</string>
+    <string name="ButtonCalculate">Calculate</string>
+    <string name="ButtonReset">Reset</string>
+    <string name="ButtonPing">Ping Start</string>
     
     <string name="main_netcalc">Network Calculator</string>
     <string name="main_tools">Network Tools</string>
