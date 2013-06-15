@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
 
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.preference.PreferenceManager;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -23,6 +23,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Main extends Activity {
+	public static String SharedName = "SharedData";
+	SharedPreferences someData;
 	
 	@SuppressLint("NewApi")
     @Override
@@ -34,7 +36,7 @@ public class Main extends Activity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
     }
-	
+		
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -109,16 +111,57 @@ public class Main extends Activity {
     
     public void ClickMainNetcalc(View view){
     	setContentView(R.layout.netmask);
+    	loadNetmask();
     }
 
 	public void ClickMainNetTools(View view){
 		setContentView(R.layout.ping);
+		loadPing();
 	}
     
     //////////////////////////////////////////
     ///////////// Netmask VIEW ///////////////
     //////////////////////////////////////////
     
+	public void saveNetmask(){
+		//Inputs fields
+    	EditText ip = (EditText)findViewById(R.id.EditTextIP);
+    	EditText bit = (EditText)findViewById(R.id.EditTextBits);
+    	EditText mask = (EditText)findViewById(R.id.EditTextNetmask);
+		
+		someData = getSharedPreferences(SharedName, 0);
+		SharedPreferences.Editor editor = someData.edit();
+		editor.putString("IP",ip.getText().toString());
+		editor.putString("Bit", bit.getText().toString());		
+		editor.putString("Mask",mask.getTag().toString());
+		editor.commit();
+	}
+	
+	public void loadNetmask(){
+		//Inputs fields
+    	EditText ip = (EditText)findViewById(R.id.EditTextIP);
+    	EditText bit = (EditText)findViewById(R.id.EditTextBits);
+    	EditText mask = (EditText)findViewById(R.id.EditTextNetmask);
+    	    	
+    	someData = getSharedPreferences(SharedName, 0);
+    	String dataReturned1 = someData.getString("IP",null);
+    	String dataReturned2 = someData.getString("Bit",null);
+    	String dataReturned3 = someData.getString("Mask",null);
+        
+    	Toast.makeText(getApplicationContext(),dataReturned1, Toast.LENGTH_LONG).show();
+    	Toast.makeText(getApplicationContext(),dataReturned2, Toast.LENGTH_LONG).show();
+    	
+        if (dataReturned1!=null){
+        	ip.setText(dataReturned1);
+        }
+        if (dataReturned2!=null){
+        	bit.setText(dataReturned2);
+        }
+        if (dataReturned3!=null){
+        	mask.setText(dataReturned3);
+        }
+	}
+	
     public boolean netmaskCalculate(View view){
     	//Result Data Objects
     	TextView tv_max_client = (TextView)findViewById(R.id.ResultMaxClient);
@@ -252,6 +295,7 @@ public class Main extends Activity {
     	tvh_broadcast.setText(BinTailToHex(netbin+tmp));
     	//Ende Berechnung
     	
+    	saveNetmask();
     	return true;
     }
     
@@ -367,6 +411,28 @@ public class Main extends Activity {
     ///////////// PING VIEW //////////////////
     //////////////////////////////////////////
     
+    public void savePing(){
+		//Inputs fields
+    	EditText ip = (EditText)findViewById(R.id.EditTextPingIP);
+		
+		someData = getSharedPreferences(SharedName, 0);
+		SharedPreferences.Editor editor = someData.edit();
+		editor.putString("PingIP",ip.getText().toString());
+		editor.commit();
+	}
+	
+	public void loadPing(){
+		//Inputs fields
+    	EditText ip = (EditText)findViewById(R.id.EditTextPingIP);
+    	    	
+    	someData = getSharedPreferences(SharedName, 0);
+    	String dataReturned1 = someData.getString("PingIP",null);
+    	
+        if (dataReturned1!=null){
+        	ip.setText(dataReturned1);
+        }
+	}
+	
     public void CreatePing(){
     	EditText ip = (EditText)findViewById(R.id.EditTextPingIP);
 		try {
@@ -403,6 +469,7 @@ public class Main extends Activity {
     		//e.printStackTrace();
     		Toast.makeText(getApplicationContext(), "Error: Ping Failed", Toast.LENGTH_LONG).show();
     	}
+    	savePing();
     }
     
 }
