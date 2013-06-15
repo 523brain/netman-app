@@ -37,7 +37,7 @@
             android:layout_marginTop="1dp"
             android:background="#292929"
             android:ems="10"
-            android:inputType="numberDecimal"
+            android:inputType="text|numberDecimal"
             android:maxLength="15"
             android:paddingLeft="33dp"
             android:textColor="@android:color/white"
@@ -107,7 +107,7 @@
             android:layout_marginTop="1dp"
             android:background="#292929"
             android:ems="10"
-            android:inputType="numberDecimal"
+            android:inputType="text|numberDecimal"
             android:maxLength="15"
             android:paddingLeft="33dp"
             android:textColor="@android:color/white"
@@ -379,6 +379,7 @@
             android:layout_marginLeft="1dp"
             android:layout_marginRight="1dp"
             android:background="#292929"
+            android:onClick="netmaskCalculate"
             android:text="@string/ButtonCalculate"
             android:textColor="@android:color/white"
             android:textSize="16sp" />
@@ -390,6 +391,7 @@
             android:layout_marginLeft="1dp"
             android:layout_marginRight="1dp"
             android:background="#2295f0"
+            android:onClick="netmaskReset"
             android:text="@string/ButtonReset"
             android:textColor="@android:color/white"
             android:textSize="16sp" />

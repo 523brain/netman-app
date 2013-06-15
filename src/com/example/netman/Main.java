@@ -114,7 +114,7 @@ public class Main extends Activity {
     ///////////// Netmask VIEW ///////////////
     //////////////////////////////////////////
     
-    public boolean goOn(View view){
+    public boolean netmaskCalculate(View view){
     	//Result Data Objects
     	EditText tv_max_client = (EditText)findViewById(R.id.ResultMaxClient);
     	EditText tv_first_client = (EditText)findViewById(R.id.ResultFirstClient);
@@ -338,6 +338,34 @@ public class Main extends Activity {
         return true;
     } 
     
+    public void netmaskReset(View view){
+    	//Result Data Objects
+    	EditText tv_max_client = (EditText)findViewById(R.id.ResultMaxClient);
+    	EditText tv_first_client = (EditText)findViewById(R.id.ResultFirstClient);
+    	EditText tv_last_client = (EditText)findViewById(R.id.ResultLastClient);
+    	EditText tv_broadcast = (EditText)findViewById(R.id.ResultBroadcast);
+    	EditText tvh_first_client = (EditText)findViewById(R.id.ResultHexFirst);
+    	EditText tvh_last_client = (EditText)findViewById(R.id.ResultHexLast);
+    	EditText tvh_broadcast = (EditText)findViewById(R.id.ResultHexBroadcast);
+    	
+    	//Inputs fields for calculation
+    	EditText ip = (EditText)findViewById(R.id.EditTextIP);
+    	EditText bit = (EditText)findViewById(R.id.EditTextBits);
+    	EditText mask = (EditText)findViewById(R.id.EditTextNetmask);
+    	
+    	//Reset input & result data
+    	tv_max_client.setText("");
+    	tv_first_client.setText("");
+    	tv_last_client.setText("");
+    	tv_broadcast.setText("");
+    	tvh_first_client.setText("");
+    	tvh_last_client.setText("");
+    	tvh_broadcast.setText("");
+    	ip.setText("");
+    	bit.setText("");
+    	mask.setText("");
+    	
+    }
     //////////////////////////////////////////
     ///////////// PING VIEW //////////////////
     //////////////////////////////////////////
