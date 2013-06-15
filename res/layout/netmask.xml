@@ -40,6 +40,7 @@
             android:inputType="text|numberDecimal"
             android:maxLength="15"
             android:paddingLeft="33dp"
+            android:text="255.255.255.253"
             android:textColor="@android:color/white"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -71,6 +72,7 @@
                 android:inputType="numberDecimal"
                 android:maxLength="2"
                 android:paddingLeft="20dp"
+                android:text="24"
                 android:textColor="@android:color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -110,6 +112,7 @@
             android:inputType="text|numberDecimal"
             android:maxLength="15"
             android:paddingLeft="33dp"
+            android:text="255.255.255.0"
             android:textColor="@android:color/white"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -128,7 +131,7 @@
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/EditText"
+            android:id="@+id/EditTextHost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
@@ -136,7 +139,7 @@
             android:background="#292929"
             android:ems="10"
             android:enabled="false"
-            android:inputType="none"
+            android:inputType="text|number"
             android:paddingLeft="20dp"
             android:textColor="@android:color/white"
             android:textSize="14sp"
@@ -166,7 +169,7 @@
                 android:id="@+id/LabelMaxClient"
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/black"
                 android:clickable="false"
@@ -174,15 +177,13 @@
                 android:textColor="#04ff22"
                 android:textSize="12sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/ResultMaxClient"
-                android:layout_width="79dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="1dp"
-                android:enabled="false"
                 android:ems="10"
-                android:inputType="text"
                 android:textColor="#04ff22"
                 android:textSize="12sp" />
 
@@ -199,7 +200,7 @@
                 android:id="@+id/LabelFirstClient"
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/black"
                 android:clickable="false"
@@ -207,22 +208,20 @@
                 android:textColor="#04ff22"
                 android:textSize="12sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/ResultFirstClient"
-                android:layout_width="79dp"
+                android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/black"
-                android:enabled="false"
-                android:inputType="text"
                 android:ems="10"
                 android:textColor="#04ff22"
                 android:textSize="12sp" />
 
             <Button
                 android:id="@+id/LabelHexFirst"
-                android:layout_width="wrap_content"
+                android:layout_width="55dp"
                 android:layout_height="24dp"
                 android:layout_marginLeft="1dp"
                 android:layout_marginTop="1dp"
@@ -232,15 +231,13 @@
                 android:textColor="#04ff22"
                 android:textSize="12sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/ResultHexFirst"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/black"
                 android:ems="10"
-                android:inputType="text"
-                android:enabled="false"
                 android:textColor="#04ff22"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -256,7 +253,7 @@
                 android:id="@+id/LabelLastClient"
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/black"
                 android:clickable="false"
@@ -264,22 +261,20 @@
                 android:textColor="#04ff22"
                 android:textSize="12sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/ResultLastClient"
-                android:layout_width="79dp"
+                android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/black"
-                android:inputType="text"
-                android:enabled="false"
                 android:ems="10"
                 android:textColor="#04ff22"
                 android:textSize="12sp" />
 
             <Button
                 android:id="@+id/LabelHexLast"
-                android:layout_width="wrap_content"
+                android:layout_width="55dp"
                 android:layout_height="24dp"
                 android:layout_marginLeft="1dp"
                 android:layout_marginTop="1dp"
@@ -289,14 +284,12 @@
                 android:textColor="#04ff22"
                 android:textSize="12sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/ResultHexLast"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/black"
-                android:inputType="text"
-                android:enabled="false"
                 android:ems="10"
                 android:textColor="#04ff22"
                 android:textSize="12sp" />
@@ -313,7 +306,7 @@
                 android:id="@+id/LabelBroadcast"
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/black"
                 android:clickable="false"
@@ -321,22 +314,20 @@
                 android:textColor="#04ff22"
                 android:textSize="12sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/ResultBroadcast"
-                android:layout_width="78dp"
+                android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/black"
-                android:inputType="text"
                 android:ems="10"
                 android:textColor="#04ff22"
-                android:enabled="false"
                 android:textSize="12sp" />
 
             <Button
                 android:id="@+id/LabelHexBroadcast"
-                android:layout_width="wrap_content"
+                android:layout_width="55dp"
                 android:layout_height="24dp"
                 android:layout_marginLeft="1dp"
                 android:layout_marginTop="1dp"
@@ -346,16 +337,14 @@
                 android:textColor="#04ff22"
                 android:textSize="12sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/ResultHexBroadcast"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/black"
-                android:inputType="text"
                 android:ems="10"
                 android:textColor="#04ff22"
-                android:enabled="false"
                 android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>

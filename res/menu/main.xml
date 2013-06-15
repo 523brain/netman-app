@@ -1,7 +1,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     
     
-    <item android:id="@+id/netmask" android:visible="true" android:enabled="true" android:title="Network Calculator"></item><item android:id="@+id/ping" android:visible="true" android:enabled="true" android:title="Network Tools"></item><item android:id="@+id/close" android:title="Schließen" android:visible="true" android:enabled="true"></item>
+	<item android:id="@+id/MenuHome" 
+	    android:title="Home" 
+	    android:enabled="true" 
+	    android:visible="true"></item>
+	<item android:id="@+id/MenuNetmask" 
+	    android:visible="true" 
+	    android:enabled="true" 
+	    android:title="Network Calculator"></item>
+	<item android:id="@+id/MenuPing" 
+	    android:visible="true" 
+	    android:enabled="true" 
+	    android:title="Network Tools"></item>
+	<item android:id="@+id/MenuClose" 
+	    android:title="Schließen" 
+	    android:visible="true" 
+	    android:enabled="true"></item>
+    
     
 
 </menu>

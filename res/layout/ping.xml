@@ -12,7 +12,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
-        android:id="@+id/EditTextHost"
+        android:id="@+id/EditTextPingIP"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:ems="10"

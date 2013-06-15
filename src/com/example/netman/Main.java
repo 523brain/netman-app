@@ -6,12 +6,14 @@ import java.text.DecimalFormat;
 
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.preference.PreferenceManager;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,6 +45,9 @@ public class Main extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
     	// Menu actions
+    	if (item.toString().equals("Home")){
+    		setContentView(R.layout.activity_main);
+    	}
     	if (item.toString().equals("Network Calculator")){
     		setContentView(R.layout.netmask);
     	}
@@ -55,13 +60,13 @@ public class Main extends Activity {
     	}
     	return true;
     }
-    
+        
     @Override
     protected Dialog onCreateDialog(int id){
     	switch (id){
     	case 10:
     		Builder builder = new AlertDialog.Builder(this);
-    		builder.setMessage("Applikation wird geschlossen!");
+    		builder.setMessage("NetMan wirklich Beenden?");
     		builder.setCancelable(true);
     		
     		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -71,7 +76,7 @@ public class Main extends Activity {
     		});
     		builder.setNegativeButton("Nein, doch nicht!", new DialogInterface.OnClickListener() {
     			public void onClick(DialogInterface dialog, int which){
-    				Toast.makeText(getApplicationContext(), "Applikation wird fortgesetzt", Toast.LENGTH_LONG).show();
+    				Toast.makeText(getApplicationContext(), "NetMan wird fortgesetzt", Toast.LENGTH_LONG).show();
     			}
     		});
     		AlertDialog dialog = builder.create();
@@ -116,13 +121,13 @@ public class Main extends Activity {
     
     public boolean netmaskCalculate(View view){
     	//Result Data Objects
-    	EditText tv_max_client = (EditText)findViewById(R.id.ResultMaxClient);
-    	EditText tv_first_client = (EditText)findViewById(R.id.ResultFirstClient);
-    	EditText tv_last_client = (EditText)findViewById(R.id.ResultLastClient);
-    	EditText tv_broadcast = (EditText)findViewById(R.id.ResultBroadcast);
-    	EditText tvh_first_client = (EditText)findViewById(R.id.ResultHexFirst);
-    	EditText tvh_last_client = (EditText)findViewById(R.id.ResultHexLast);
-    	EditText tvh_broadcast = (EditText)findViewById(R.id.ResultHexBroadcast);
+    	TextView tv_max_client = (TextView)findViewById(R.id.ResultMaxClient);
+    	TextView tv_first_client = (TextView)findViewById(R.id.ResultFirstClient);
+    	TextView tv_last_client = (TextView)findViewById(R.id.ResultLastClient);
+    	TextView tv_broadcast = (TextView)findViewById(R.id.ResultBroadcast);
+    	TextView tvh_first_client = (TextView)findViewById(R.id.ResultHexFirst);
+    	TextView tvh_last_client = (TextView)findViewById(R.id.ResultHexLast);
+    	TextView tvh_broadcast = (TextView)findViewById(R.id.ResultHexBroadcast);
     	
     	//Inputs fields for calculation
     	EditText ip = (EditText)findViewById(R.id.EditTextIP);
@@ -247,14 +252,6 @@ public class Main extends Activity {
     	tvh_broadcast.setText(BinTailToHex(netbin+tmp));
     	//Ende Berechnung
     	
-    	/*Set Result Data Visible
-    	tv_max_client.setVisibility(1);
-    	tv_first_client.setVisibility(1);
-    	tv_last_client.setVisibility(1);
-    	tv_broadcast.setVisibility(1);
-    	tvh_first_client.setVisibility(1);
-    	tvh_last_client.setVisibility(1);
-    	tvh_broadcast.setVisibility(1);*/
     	return true;
     }
     
@@ -340,13 +337,13 @@ public class Main extends Activity {
     
     public void netmaskReset(View view){
     	//Result Data Objects
-    	EditText tv_max_client = (EditText)findViewById(R.id.ResultMaxClient);
-    	EditText tv_first_client = (EditText)findViewById(R.id.ResultFirstClient);
-    	EditText tv_last_client = (EditText)findViewById(R.id.ResultLastClient);
-    	EditText tv_broadcast = (EditText)findViewById(R.id.ResultBroadcast);
-    	EditText tvh_first_client = (EditText)findViewById(R.id.ResultHexFirst);
-    	EditText tvh_last_client = (EditText)findViewById(R.id.ResultHexLast);
-    	EditText tvh_broadcast = (EditText)findViewById(R.id.ResultHexBroadcast);
+    	TextView tv_max_client = (TextView)findViewById(R.id.ResultMaxClient);
+    	TextView tv_first_client = (TextView)findViewById(R.id.ResultFirstClient);
+    	TextView tv_last_client = (TextView)findViewById(R.id.ResultLastClient);
+    	TextView tv_broadcast = (TextView)findViewById(R.id.ResultBroadcast);
+    	TextView tvh_first_client = (TextView)findViewById(R.id.ResultHexFirst);
+    	TextView tvh_last_client = (TextView)findViewById(R.id.ResultHexLast);
+    	TextView tvh_broadcast = (TextView)findViewById(R.id.ResultHexBroadcast);
     	
     	//Inputs fields for calculation
     	EditText ip = (EditText)findViewById(R.id.EditTextIP);
@@ -363,15 +360,15 @@ public class Main extends Activity {
     	tvh_broadcast.setText("");
     	ip.setText("");
     	bit.setText("");
-    	mask.setText("");
-    	
+    	mask.setText("");	
     }
+    
     //////////////////////////////////////////
     ///////////// PING VIEW //////////////////
     //////////////////////////////////////////
     
     public void CreatePing(){
-    	EditText ip = (EditText)findViewById(R.id.EditTextHost);
+    	EditText ip = (EditText)findViewById(R.id.EditTextPingIP);
 		try {
 			String iA = InetAddress.getLocalHost().getHostAddress();
 			ip.setText(iA);
@@ -382,7 +379,7 @@ public class Main extends Activity {
     }
       
     public void goPing(View view){
-    	EditText ip = (EditText)findViewById(R.id.EditTextHost);
+    	EditText ip = (EditText)findViewById(R.id.EditTextPingIP);
     	TextView pingtext = (TextView)findViewById(R.id.textViewPingResult);
     	String message = "";
     	try {
