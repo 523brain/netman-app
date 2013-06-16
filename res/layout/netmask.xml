@@ -225,7 +225,7 @@
                 android:layout_marginTop="1dp"
                 android:background="@android:color/black"
                 android:clickable="false"
-                android:text="@string/LabelHexBroadcast"
+                android:text="@string/LabelHexFirst"
                 android:textColor="#04ff22"
                 android:textSize="12sp" />
 
