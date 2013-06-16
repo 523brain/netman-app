@@ -72,7 +72,6 @@
                 android:inputType="numberDecimal"
                 android:maxLength="2"
                 android:paddingLeft="20dp"
-                android:text="24"
                 android:textColor="@android:color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"

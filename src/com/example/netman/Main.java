@@ -1,7 +1,6 @@
 package com.example.netman;
 
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.text.DecimalFormat;
 
 import android.os.Bundle;
@@ -99,8 +98,6 @@ public class Main extends Activity {
     	case 32:
     		Toast.makeText(getApplicationContext(), "Fehler keine valide Netmask Eingabe!", Toast.LENGTH_LONG).show();
     		break;
-    	case 40:
-    		Toast.makeText(getApplicationContext(), "Es besteht keine Netzwerkverbindung!", Toast.LENGTH_LONG).show();
     	}
     	return super.onCreateDialog(id);
     }
@@ -188,39 +185,58 @@ public class Main extends Activity {
         		return false;
     		}
     	}
-    	//FELD BIT & MASK 
+    	//FELD BIT
     	if (bit.getText().toString().isEmpty() && mask.getText().toString().isEmpty()){
     		showDialog(21);
     		return false;
-    	} else {
-    		if (bit.getText().toString().isEmpty()){ 
-    			if(checkIp(ip.getText().toString())){
-    				if (bit.getText().toString().isEmpty()){
-        				String [] subs = ip.getText().toString().split ("\\.");
-        				for (String s : subs){
-        					tmp = tmp +String.valueOf(Integer.toBinaryString(Integer.parseInt(s)).length());
-        				}
-        				bit.setText(tmp);
-        			}
-    			} else {    			
-        			showDialog(32);
-            		return false;
-        		}	
+    	}
+    	 
+    	//FELD Bit
+    	if (!bit.getText().toString().isEmpty()){
+    		if((Integer.parseInt(bit.getText().toString())>32)||(Integer.parseInt(bit.getText().toString())<1)){
+    			showDialog(31);
+    			return false;
+    		} else {
+    			if (mask.getText().toString().isEmpty()){
+    				for(int i=1;i<=Integer.parseInt(bit.getText().toString());i++){
+    					tmp = tmp + "1";
+    				}
+    				for (int i=tmp.length();i<32;i++){
+    					tmp = tmp + "0";    				
+    				}
+    				mask.setText(BinTailToDec(splitBinary(tmp.substring(0,24),".")+tmp.substring(24,tmp.length())));
+    			}
     		}
-    		if (mask.getText().toString().isEmpty()){ 			 	
-    			if (Integer.parseInt(bit.getText().toString())>32){
-	            	showDialog(31);
-	            	return false;
-	        	}
-	    		for(int i=1;i<=Integer.parseInt(bit.getText().toString());i++){
-	    			tmp = tmp + "1";
-	    		}
-	    		String fill = "";
-	    		for (int i=tmp.length();i<32;i++){
-	    			tmp = tmp + "0";    				
-	    		}
-	    		mask.setText(BinTailToDec(splitBinary(tmp.substring(0,24),".")+tmp.substring(24,tmp.length())));   			
+    	}    	
+    	//FELD SNM
+    	if (!mask.getText().toString().isEmpty()){
+    		if (checkIp(mask.getText().toString())==false){
+    			showDialog(32);
+    			return false;
     		}
+    		String [] subs = mask.getText().toString().split ("\\.");
+			for (String s : subs){
+				tmp = tmp +Integer.toBinaryString(Integer.parseInt(s));
+				Boolean V = false;
+				switch(Integer.parseInt(s)){
+				case 0: V = true; break;
+				case 128: V = true; break;
+				case 192: V = true; break;
+				case 224: V = true; break;
+				case 240: V = true; break;
+				case 248: V = true; break;
+				case 252: V = true; break;
+				case 255: V = true; break;
+				default: V = false; break;
+				}
+				if (V == false){
+					showDialog(32);
+					return false;
+				}
+			}
+			if (tmp.substring(0,tmp.indexOf("0")).length()!=Integer.parseInt(bit.getText().toString()) || bit.getText().toString().isEmpty()){
+				bit.setText(String.valueOf(tmp.substring(0,tmp.indexOf("0")).length()));
+			}
     	}
     	//End Validation Check
     	
@@ -292,7 +308,7 @@ public class Main extends Activity {
     	tvh_broadcast.setText(BinTailToHex(netbin+tmp));
     	//Ende Berechnung
     	
-    	saveNetmask();
+    	//saveNetmask();
     	return true;
     }
     
