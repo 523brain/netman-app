@@ -5,18 +5,25 @@
 	    android:title="Home" 
 	    android:enabled="true" 
 	    android:visible="true"></item>
-	<item android:id="@+id/MenuNetmask" 
+	<group android:id="@+id/NetworkTools" android:enabled="true" android:visible="true">
+		<item android:id="@+id/MenuNetmask" 
 	    android:visible="true" 
 	    android:enabled="true" 
 	    android:title="Network Calculator"></item>
-	<item android:id="@+id/MenuPing" 
+		<item android:id="@+id/MenuPing" 
 	    android:visible="true" 
 	    android:enabled="true" 
-	    android:title="Network Tools"></item>
+	    android:title="Network Ping"></item>
+		<item android:id="@+id/MenuPortscan" 
+	    android:visible="true" 
+	    android:enabled="true" 
+	    android:title="Network Portscan"></item>
+	</group>
 	<item android:id="@+id/MenuClose" 
 	    android:title="Schließen" 
 	    android:visible="true" 
 	    android:enabled="true"></item>
+	
     
     
 

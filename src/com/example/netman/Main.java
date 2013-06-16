@@ -52,9 +52,13 @@ public class Main extends Activity {
     		setContentView(R.layout.netmask);
     		loadNetmask();
     	}
-    	if (item.toString().equals("Network Tools")){
+    	if (item.toString().equals("Network Ping")){
     		setContentView(R.layout.ping);
     		loadPing();
+    	}
+    	if (item.toString().equals("Network Portscan")){
+    		setContentView(R.layout.portscan);
+    		//loadPortscan();
     	}
     	if (item.toString().equals("Schließen")){
     		showDialog(10);
@@ -469,4 +473,20 @@ public class Main extends Activity {
     	savePing();
     }
     
+
+    //////////////////////////////////////////
+    //////////// PORTSCAN VIEW ///////////////
+    //////////////////////////////////////////
+    
+    public void savePortscan(){
+		
+	}
+	
+	public void loadPortscan(){
+		
+	}
+	
+	public boolean goPortscan(View view){
+		
+	}
 }
