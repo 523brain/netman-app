@@ -11,6 +11,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.view.Menu;
@@ -58,8 +59,10 @@ public class Main extends Activity {
     		loadPing();
     	}
     	if (item.toString().equals("Network Portscan")){
-    		setContentView(R.layout.portscan);
+    		//setContentView(R.layout.portscan);
     		//loadPortscan();
+    		Intent intent = new Intent(Main.this, Portscan.class);
+    		startActivity(intent);
     	}
     	if (item.toString().equals("Schließen")){
     		showDialog(10);
