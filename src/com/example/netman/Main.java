@@ -233,10 +233,8 @@ public class Main extends Activity {
 					showDialog(32);
 					return false;
 				}
-			}
-			if (tmp.substring(0,tmp.indexOf("0")).length()!=Integer.parseInt(bit.getText().toString()) || bit.getText().toString().isEmpty()){
-				bit.setText(String.valueOf(tmp.substring(0,tmp.indexOf("0")).length()));
-			}
+			} 
+			bit.setText(String.valueOf(tmp.substring(0,tmp.indexOf("0")).length()));
     	}
     	//End Validation Check
     	
