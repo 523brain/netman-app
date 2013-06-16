@@ -124,13 +124,15 @@ public class Main extends Activity {
 		//Inputs fields
     	EditText ip = (EditText)findViewById(R.id.EditTextIP);
     	EditText bit = (EditText)findViewById(R.id.EditTextBits);
-    	EditText mask = (EditText)findViewById(R.id.EditTextNetmask);
-		
+    			
 		someData = getSharedPreferences(SharedName, 0);
 		SharedPreferences.Editor editor = someData.edit();
-		editor.putString("IP",ip.getText().toString());
-		editor.putString("Bit", bit.getText().toString());		
-		editor.putString("Mask",mask.getTag().toString());
+		if (!ip.getText().toString().isEmpty()){
+			editor.putString("IP",ip.getText().toString());
+		}
+		if (!bit.getText().toString().isEmpty()){
+			editor.putString("Bit", bit.getText().toString());		
+		}
 		editor.commit();
 	}
 	
@@ -138,21 +140,16 @@ public class Main extends Activity {
 		//Inputs fields
     	EditText ip = (EditText)findViewById(R.id.EditTextIP);
     	EditText bit = (EditText)findViewById(R.id.EditTextBits);
-    	EditText mask = (EditText)findViewById(R.id.EditTextNetmask);
-    	    	
+    	    	    	
     	someData = getSharedPreferences(SharedName, 0);
     	String dataReturned1 = someData.getString("IP",null);
     	String dataReturned2 = someData.getString("Bit",null);
-    	String dataReturned3 = someData.getString("Mask",null);
-        
-        if (dataReturned1!=null){
+    	
+    	if (dataReturned1!=null){
         	ip.setText(dataReturned1);
         }
         if (dataReturned2!=null){
         	bit.setText(dataReturned2);
-        }
-        if (dataReturned3!=null){
-        	mask.setText(dataReturned3);
         }
 	}
 	
@@ -306,7 +303,7 @@ public class Main extends Activity {
     	tvh_broadcast.setText(BinTailToHex(netbin+tmp));
     	//Ende Berechnung
     	
-    	//saveNetmask();
+    	saveNetmask();
     	return true;
     }
     
