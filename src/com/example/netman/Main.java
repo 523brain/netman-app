@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -488,5 +489,7 @@ public class Main extends Activity {
 	
 	public boolean goPortscan(View view){
 		
+		savePortscan();
+		return true;
 	}
 }
