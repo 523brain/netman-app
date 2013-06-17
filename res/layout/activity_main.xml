@@ -2,60 +2,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
+    android:background="@drawable/metal"
     tools:context=".MainActivity" >
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="340dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/ion"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="@dimen/activity_horizontal_margin" >
+
     </LinearLayout>
     
             <LinearLayout
                 android:id="@+id/linearLayout2"
-                android:layout_width="500dp"
-                android:layout_height="80dp"
+                android:layout_width="300dp"
+                android:layout_height="83dp"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@+id/linearLayout1"
-                android:layout_marginTop="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
                 android:background="@android:color/black"
                 android:gravity="center_vertical" >
 
                 <Button
                     android:id="@+id/buttonMainNetcalc"
-                    android:layout_width="159dp"
+                    android:layout_width="146dp"
                     android:layout_height="80dp"
-                    android:background="#292929"
-                    android:onClick="ClickMainNetcalc"
-                    android:text="@string/main_netcalc"
-                    android:textColor="@android:color/white"
-                    android:textSize="16sp" />
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="@drawable/custombut"
+                    android:onClick="ClickMainNetcalc" />
 
                 <Button
                     android:id="@+id/buttonMainTools"
-                    android:layout_width="159dp"
+                    android:layout_width="150dp"
                     android:layout_height="80dp"
-                    android:layout_marginLeft="1dp"
-                    android:background="#2295f0"
-                    android:onClick="ClickMainNetTools"
-                    android:text="@string/main_tools"
-                    android:textColor="@android:color/white"
-                    android:textSize="16sp" />
+                    android:layout_marginRight="1dp"
+                    android:background="@drawable/custombut2"
+                    android:onClick="ClickMainNetTools" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="500dp"
-                android:layout_height="50dp"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/linearLayout2"
-                android:layout_marginTop="1.5dp"
-                android:background="#292929"
-                android:orientation="vertical" >
             </LinearLayout>
 
 

@@ -2,37 +2,76 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/pingback"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/PingLabelIP"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="282dp"
         android:layout_height="wrap_content"
-        android:text="@string/LabelIP"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_marginTop="30dp"
+        android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/EditTextPingIP"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text|numberDecimal"
-        android:maxLength="15"
-        android:maxLines="1"
-        android:textStyle="normal"
-        android:typeface="normal" />
+        <EditText
+            android:id="@+id/EditTextPingIP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="89dp"
+            android:ems="10"
+            android:inputType="text|numberDecimal"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:textColor="@android:color/white"
+            android:textStyle="normal"
+            android:typeface="normal" />
 
-    <Button
-        android:id="@+id/ButtonPing"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="goPing"
-        android:text="@string/ButtonPing" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/textViewPingResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible" />
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginLeft="34dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textViewPingResult"
+            android:layout_width="250dp"
+            android:layout_height="240dp"
+            android:textSize="16sp"
+            android:textColor="#04ff22"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="298dp"
+        android:layout_height="83dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/black"
+        android:gravity="center_vertical" >
+
+        <Button
+            android:id="@+id/ButtonPing"
+            android:layout_width="146dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:onClick="goPing"
+			android:background="@drawable/pingbut"/>
+
+        <Button
+            android:id="@+id/ButtonReset"
+            android:layout_width="146dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="1dp"
+            android:background="@drawable/netmaskbut2"
+            android:onClick="netmaskReset" />
+    </LinearLayout>
+
+
 
 </LinearLayout>

@@ -80,7 +80,7 @@
 
     <LinearLayout
         android:id="@+id/LinearLayout01"
-        android:layout_width="300dp"
+        android:layout_width="200dp"
         android:layout_height="36dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/linearLayout1"
@@ -111,34 +111,6 @@
             android:maxLength="15"
             android:paddingLeft="33dp"
             android:nextFocusDown="@+id/EditTextBits"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:typeface="sans" />
-
-        <Button
-            android:id="@+id/LabelHost"
-            android:layout_width="33dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="2dp"
-            android:background="#2295f0"
-            android:clickable="false"
-            android:longClickable="false"
-            android:text="@string/LabelHost"
-            android:textColor="@android:color/white"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/EditTextHost"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="4dp"
-            android:background="#292929"
-            android:ems="10"
-            android:enabled="false"
-            android:inputType="text|number"
-            android:paddingLeft="20dp"
             android:textColor="@android:color/white"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -349,7 +321,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="500dp"
+        android:layout_width="298dp"
         android:layout_height="83dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
@@ -365,23 +337,16 @@
             android:layout_height="80dp"
             android:layout_marginLeft="1dp"
             android:layout_marginRight="1dp"
-            android:background="#292929"
-            android:onClick="netmaskCalculate"
-            android:text="@string/ButtonCalculate"
-            android:textColor="@android:color/white"
-            android:textSize="16sp" />
+            android:background="@drawable/netmaskbut1"
+            android:onClick="netmaskCalculate"/>
 
         <Button
             android:id="@+id/ButtonReset"
-            android:layout_width="match_parent"
+            android:layout_width="146dp"
             android:layout_height="80dp"
             android:layout_marginLeft="1dp"
-            android:layout_marginRight="1dp"
-            android:background="#2295f0"
-            android:onClick="netmaskReset"
-            android:text="@string/ButtonReset"
-            android:textColor="@android:color/white"
-            android:textSize="16sp" />
+            android:background="@drawable/netmaskbut2"
+            android:onClick="netmaskReset" />
 
     </LinearLayout>
 
