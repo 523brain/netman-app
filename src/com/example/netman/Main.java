@@ -63,7 +63,41 @@ public class Main extends Activity {
     	}
     	return true;
     }
-        
+    
+    public void myRandomSound(int low, int high) {
+		high++;
+		Double randomNo = (Math.random() * (high - low) + low);
+		
+		switch(randomNo.intValue()){
+		case 1:
+			mp = MediaPlayer.create(getApplicationContext(), R.drawable.idontthinkso);
+			mp.start();
+			break;
+		case 4: 
+			mp = MediaPlayer.create(getApplicationContext(), R.drawable.yourcrazy);
+			mp.start();
+			break;
+		}
+	}
+    
+    public static boolean checkIp (String sip)
+    {
+        String [] parts = sip.split ("\\.");
+        if ( parts.length != 4 ){
+        	return false;
+        }
+        for (String s : parts){
+        	if (s.contains("(")||s.contains(")")||s.contains("N")||s.contains(",")||s.contains("#")||s.contains(";")||s.contains("+")||s.contains(" ")){
+        		return false;
+        	}
+            int i = Integer.parseInt (s);
+            if (i < 0 || i > 255){
+                return false;
+            }
+        }
+        return true;
+    } 
+
     @Override
     protected Dialog onCreateDialog(int id){
     	switch (id){
@@ -86,18 +120,23 @@ public class Main extends Activity {
     		dialog.show();
     		break;
     	case 20:
+    		myRandomSound(1,6);
     		Toast.makeText(getApplicationContext(), "Fehler bei der IP Eingabe!", Toast.LENGTH_SHORT).show();
     		break;
     	case 21:
+    		myRandomSound(1,6);
     		Toast.makeText(getApplicationContext(), "Fehler bitte Bits oder Netmask angeben!", Toast.LENGTH_SHORT).show();
     		break;
     	case 30:
+    		myRandomSound(1,6);
     		Toast.makeText(getApplicationContext(), "Fehler keine valide IP Eingabe!", Toast.LENGTH_SHORT).show();
     		break;
     	case 31:
+    		myRandomSound(1,6);
     		Toast.makeText(getApplicationContext(), "Fehler keine gültige Bit Eingabe!", Toast.LENGTH_SHORT).show();
     		break;
     	case 32:
+    		myRandomSound(1,6);
     		Toast.makeText(getApplicationContext(), "Fehler keine valide Netmask Eingabe!", Toast.LENGTH_SHORT).show();
     		break;
     	}
@@ -380,25 +419,7 @@ public class Main extends Activity {
         }
         return all;
     }
-    
-    public static boolean checkIp (String sip)
-    {
-        String [] parts = sip.split ("\\.");
-        if ( parts.length != 4 ){
-        	return false;
-        }
-        for (String s : parts){
-        	if (s.contains("(")||s.contains(")")||s.contains("N")||s.contains(",")||s.contains("#")||s.contains(";")||s.contains("+")){
-        		return false;
-        	}
-            int i = Integer.parseInt (s);
-            if (i < 0 || i > 255){
-                return false;
-            }
-        }
-        return true;
-    } 
-    
+        
     public void netmaskReset(View view){
     	//Result Data Objects
     	TextView tv_max_client = (TextView)findViewById(R.id.ResultMaxClient);
@@ -467,7 +488,8 @@ public class Main extends Activity {
 	
     public boolean goPing(View view){
     	EditText ip = (EditText)findViewById(R.id.EditTextPingIP);
-    	if (!ip.getText().toString().isEmpty() && (checkIp(ip.getText().toString())==false)){
+    	if (ip.getText().toString().isEmpty() && (checkIp(ip.getText().toString())==false)){
+    			myRandomSound(1,6);
     			showDialog(30);
         		return false;
     	}
@@ -477,12 +499,15 @@ public class Main extends Activity {
     	      InetAddress host = InetAddress.getByName( ip.getText().toString() );
     	      for (int i=0;i<8;i++){
     	    	  long        tm   = System.nanoTime();    	      
-        	      if (host.isReachable(5000)){
+        	      if (host.isReachable(2000)){
         	    	  tm = (System.nanoTime() - tm) / 1000000L;
         	      	  message = message + "Ping OK (time = " + tm + " ms). \n";
         	          
         	      } else {
         	    	  message = message + "No responde: Time out.\n";
+        	    	  if (i>3){
+        	    		  break;
+        	    	  }
         	      }
         	      pingtext.setText(message);
         	      pingtext.setVisibility(1);
