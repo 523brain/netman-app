@@ -64,6 +64,7 @@ public class Netmask extends Activity{
     	return true;
     }
 	
+	// AUSLAGERN BEI NEXT SPRINT //
 	@Override
     protected Dialog onCreateDialog(int id){
     	switch (id){
@@ -109,7 +110,7 @@ public class Netmask extends Activity{
     	}
     	return super.onCreateDialog(id);
     }
-
+	
 	public void myRandomSound(int low, int high) {
 		high++;
 		Double randomNo = (Math.random() * (high - low) + low);
@@ -143,6 +144,11 @@ public class Netmask extends Activity{
         }
         return true;
     }
+    // AUSLAGERN ENDE //
+    
+    //////////////////////////////////////////
+    //////////////  Ping VIEW  ///////////////
+    //////////////////////////////////////////
     
     public void saveNetmask(){
 		//Inputs fields
