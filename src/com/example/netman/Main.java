@@ -3,6 +3,7 @@ package com.example.netman;
 import java.net.InetAddress;
 import java.text.DecimalFormat;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.annotation.SuppressLint;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Main extends Activity {
+	public MediaPlayer mp,mp2;
 	public static String SharedName = "SharedData";
 	SharedPreferences someData;
 	
@@ -116,6 +118,13 @@ public class Main extends Activity {
 		loadPing();
 	}
     
+	public void EasterEgg(View view){
+		mp = MediaPlayer.create(getApplicationContext(), R.drawable.alarm );
+		mp.start();
+		mp2 = MediaPlayer.create(getApplicationContext(), R.drawable.laser );
+		mp2.start();
+	}
+	
     //////////////////////////////////////////
     ///////////// Netmask VIEW ///////////////
     //////////////////////////////////////////

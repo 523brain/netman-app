@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_name">NetMan</string>
-	<string name="action_settings">Settings</string>
 	<string name="LabelIP">IP</string>
 	<string name="LabelBit">Bits</string>
 	<string name="LabelNetmask">SNM</string>
