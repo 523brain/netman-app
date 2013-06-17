@@ -78,6 +78,7 @@ public class Main extends Activity {
     		
     		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
     			public void onClick(DialogInterface dialog, int which){
+    				setResult(2);
     				Main.this.finish();
     			}
     		});
