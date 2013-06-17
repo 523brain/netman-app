@@ -462,8 +462,12 @@ public class Main extends Activity {
     	pingip.setText("");
     }
 	
-    public void goPing(View view){
+    public boolean goPing(View view){
     	EditText ip = (EditText)findViewById(R.id.EditTextPingIP);
+    	if (!ip.getText().toString().isEmpty() && (checkIp(ip.getText().toString())==false)){
+    			showDialog(30);
+        		return false;
+    	}
     	TextView pingtext = (TextView)findViewById(R.id.textViewPingResult);
     	String message = "";
     	try {
@@ -488,6 +492,7 @@ public class Main extends Activity {
     		Toast.makeText(getApplicationContext(), "Error: Ping Failed", Toast.LENGTH_SHORT).show();
     	}
     	savePing();
+    	return true;
     }
     
 }
