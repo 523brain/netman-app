@@ -37,7 +37,7 @@
             android:layout_marginTop="1dp"
             android:background="#292929"
             android:ems="10"
-            android:inputType="text|numberDecimal"
+            android:inputType="numberDecimal"
             android:maxLength="15"
             android:paddingLeft="33dp"
             android:textColor="@android:color/white"
@@ -69,6 +69,7 @@
                 android:background="#292929"
                 android:ems="10"
                 android:inputType="numberDecimal"
+                android:nextFocusDown="@+id/EditTextNetmask"
                 android:maxLength="2"
                 android:paddingLeft="20dp"
                 android:textColor="@android:color/white"
@@ -107,10 +108,10 @@
             android:layout_marginTop="1dp"
             android:background="#292929"
             android:ems="10"
-            android:inputType="text|numberDecimal"
+            android:inputType="numberDecimal"
             android:maxLength="15"
             android:paddingLeft="33dp"
-            android:nextFocusDown="@+id/EditTextBits"
+            
             android:textColor="@android:color/white"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -341,7 +342,7 @@
             android:onClick="netmaskCalculate"/>
 
         <Button
-            android:id="@+id/ButtonReset"
+            android:id="@+id/ButtonPingReset"
             android:layout_width="146dp"
             android:layout_height="80dp"
             android:layout_marginLeft="1dp"

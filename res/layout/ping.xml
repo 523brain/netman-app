@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="89dp"
             android:ems="10"
-            android:inputType="text|numberDecimal"
+            android:inputType="numberDecimal"
             android:maxLength="15"
             android:maxLines="1"
             android:textColor="@android:color/white"
@@ -64,12 +64,12 @@
 			android:background="@drawable/pingbut"/>
 
         <Button
-            android:id="@+id/ButtonReset"
+            android:id="@+id/ButtonPingReset"
             android:layout_width="146dp"
             android:layout_height="80dp"
             android:layout_marginLeft="1dp"
             android:background="@drawable/netmaskbut2"
-            android:onClick="netmaskReset" />
+            android:onClick="resetPing" />
     </LinearLayout>
 
 

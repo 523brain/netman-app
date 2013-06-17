@@ -440,7 +440,19 @@ public class Main extends Activity {
         	ip.setText(dataReturned1);
         }
 	}
-      
+    
+	public void resetPing(View view){
+    	//Result Data Objects
+    	TextView pings = (TextView)findViewById(R.id.textViewPingResult);
+    	
+    	//Inputs fields for calculation
+    	EditText pingip = (EditText)findViewById(R.id.EditTextPingIP);
+    	
+    	//Reset input & result data
+    	pings.setText("");
+    	pingip.setText("");
+    }
+	
     public void goPing(View view){
     	EditText ip = (EditText)findViewById(R.id.EditTextPingIP);
     	TextView pingtext = (TextView)findViewById(R.id.textViewPingResult);
