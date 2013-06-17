@@ -77,26 +77,26 @@ public class Main extends Activity {
     		});
     		builder.setNegativeButton("Nein, doch nicht!", new DialogInterface.OnClickListener() {
     			public void onClick(DialogInterface dialog, int which){
-    				Toast.makeText(getApplicationContext(), "NetMan wird fortgesetzt", Toast.LENGTH_LONG).show();
+    				Toast.makeText(getApplicationContext(), "NetMan wird fortgesetzt", Toast.LENGTH_SHORT).show();
     			}
     		});
     		AlertDialog dialog = builder.create();
     		dialog.show();
     		break;
     	case 20:
-    		Toast.makeText(getApplicationContext(), "Fehler bei der IP Eingabe!", Toast.LENGTH_LONG).show();
+    		Toast.makeText(getApplicationContext(), "Fehler bei der IP Eingabe!", Toast.LENGTH_SHORT).show();
     		break;
     	case 21:
-    		Toast.makeText(getApplicationContext(), "Fehler bitte Bits oder Netmask angeben!", Toast.LENGTH_LONG).show();
+    		Toast.makeText(getApplicationContext(), "Fehler bitte Bits oder Netmask angeben!", Toast.LENGTH_SHORT).show();
     		break;
     	case 30:
-    		Toast.makeText(getApplicationContext(), "Fehler keine valide IP Eingabe!", Toast.LENGTH_LONG).show();
+    		Toast.makeText(getApplicationContext(), "Fehler keine valide IP Eingabe!", Toast.LENGTH_SHORT).show();
     		break;
     	case 31:
-    		Toast.makeText(getApplicationContext(), "Fehler keine gültige Bit Eingabe!", Toast.LENGTH_LONG).show();
+    		Toast.makeText(getApplicationContext(), "Fehler keine gültige Bit Eingabe!", Toast.LENGTH_SHORT).show();
     		break;
     	case 32:
-    		Toast.makeText(getApplicationContext(), "Fehler keine valide Netmask Eingabe!", Toast.LENGTH_LONG).show();
+    		Toast.makeText(getApplicationContext(), "Fehler keine valide Netmask Eingabe!", Toast.LENGTH_SHORT).show();
     		break;
     	}
     	return super.onCreateDialog(id);
@@ -459,7 +459,7 @@ public class Main extends Activity {
     	String message = "";
     	try {
     	      InetAddress host = InetAddress.getByName( ip.getText().toString() );
-    	      for (int i=0;i<4;i++){
+    	      for (int i=0;i<8;i++){
     	    	  long        tm   = System.nanoTime();    	      
         	      if (host.isReachable(5000)){
         	    	  tm = (System.nanoTime() - tm) / 1000000L;
@@ -476,7 +476,7 @@ public class Main extends Activity {
     	      
     	} catch( Exception e ) {
     		//e.printStackTrace();
-    		Toast.makeText(getApplicationContext(), "Error: Ping Failed", Toast.LENGTH_LONG).show();
+    		Toast.makeText(getApplicationContext(), "Error: Ping Failed", Toast.LENGTH_SHORT).show();
     	}
     	savePing();
     }
