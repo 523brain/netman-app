@@ -388,6 +388,9 @@ public class Main extends Activity {
         	return false;
         }
         for (String s : parts){
+        	if (s.contains("(")||s.contains(")")||s.contains("N")||s.contains(",")||s.contains("#")||s.contains(";")||s.contains("+")){
+        		return false;
+        	}
             int i = Integer.parseInt (s);
             if (i < 0 || i > 255){
                 return false;
