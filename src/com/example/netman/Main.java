@@ -40,6 +40,14 @@ public class Main extends Activity {
         return true;
     }
     
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	    if(resultCode==2){
+	        setResult(2);
+	        finish();
+	    }
+	}
+	
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
     	// Menu actions
@@ -105,12 +113,5 @@ public class Main extends Activity {
 		mp2 = MediaPlayer.create(getApplicationContext(), R.drawable.laser );
 		mp2.start();
 	}
-	
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-	    if(resultCode==2){
-	        finish();
-	    }
-	}
-	   
+		   
 }

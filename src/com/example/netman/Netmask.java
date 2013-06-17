@@ -44,25 +44,12 @@ public class Netmask extends Activity{
         return true;
     }
  
-	@Override
-    public boolean onOptionsItemSelected(MenuItem item){
-    	// Menu actions
-    	if (item.toString().equals("Home")){
-    		Intent home = new Intent(this, Main.class);
-    		startActivityForResult(home,2);
-    	}
-    	if (item.toString().equals("Network Calculator")){
-    		loadNetmask();
-    	}
-    	if (item.toString().equals("Network Tools")){
-    		Intent ping = new Intent(this, Ping.class);
-    		startActivityForResult(ping,2);
-    	}
-    	if (item.toString().equals("Schließen")){
-    		showDialog(10);
-    	}
-    	return true;
-    }
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	    if(resultCode==2){
+	        setResult(2);
+	        finish();
+	    }
+	}
 	
 	// AUSLAGERN BEI NEXT SPRINT //
 	@Override
@@ -150,6 +137,26 @@ public class Netmask extends Activity{
     //////////////  Ping VIEW  ///////////////
     //////////////////////////////////////////
     
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+    	// Menu actions
+    	if (item.toString().equals("Home")){
+    		Intent home = new Intent(this, Main.class);
+    		startActivityForResult(home,2);
+    	}
+    	if (item.toString().equals("Network Calculator")){
+    		loadNetmask();
+    	}
+    	if (item.toString().equals("Network Tools")){
+    		Intent ping = new Intent(this, Ping.class);
+    		startActivityForResult(ping,2);
+    	}
+    	if (item.toString().equals("Schließen")){
+    		showDialog(10);
+    	}
+    	return true;
+    }
+	
     public void saveNetmask(){
 		//Inputs fields
     	EditText ip = (EditText)findViewById(R.id.EditTextIP);

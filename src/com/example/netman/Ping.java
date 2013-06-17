@@ -36,34 +36,21 @@ public class Ping extends Activity{
         StrictMode.setThreadPolicy(policy);
         loadPing();
     }
-		
-	@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+
+	public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
- 
+
 	@Override
-    public boolean onOptionsItemSelected(MenuItem item){
-    	// Menu actions
-    	if (item.toString().equals("Home")){
-    		Intent home = new Intent(this, Main.class);
-    		startActivityForResult(home,2);
-    	}
-    	if (item.toString().equals("Network Calculator")){
-    		Intent netmask = new Intent(this, Netmask.class);
-    		startActivityForResult(netmask,2);
-    	}
-    	if (item.toString().equals("Network Tools")){
-    		loadPing();
-    	}
-    	if (item.toString().equals("Schließen")){
-    		showDialog(10);
-    	}
-    	return true;
-    }
-	
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	    if(resultCode==2){
+	        setResult(2);
+	        finish();
+	    }
+	}
+ 
     // AUSLAGERN BEI NEXT SPRINT //
     @Override
     protected Dialog onCreateDialog(int id){
@@ -133,7 +120,27 @@ public class Ping extends Activity{
     //////////////////////////////////////////
     //////////////  Ping VIEW  ///////////////
     //////////////////////////////////////////
-    
+ 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+    	// Menu actions
+    	if (item.toString().equals("Home")){
+    		Intent home = new Intent(this, Main.class);
+    		startActivityForResult(home,2);
+    	}
+    	if (item.toString().equals("Network Calculator")){
+    		Intent netmask = new Intent(this, Netmask.class);
+    		startActivityForResult(netmask,2);
+    	}
+    	if (item.toString().equals("Network Tools")){
+    		loadPing();
+    	}
+    	if (item.toString().equals("Schließen")){
+    		showDialog(10);
+    	}
+    	return true;
+    }
+	
     public void savePing(){
 		//Inputs fields
     	EditText ip = (EditText)findViewById(R.id.EditTextPingIP);
