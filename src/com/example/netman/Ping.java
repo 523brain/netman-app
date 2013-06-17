@@ -78,6 +78,10 @@ public class Ping extends Activity{
     		myRandomSound(1,6);
     		Toast.makeText(getApplicationContext(), "Fehler bei der IP Eingabe!", Toast.LENGTH_SHORT).show();
     		break;
+    	case 30:
+    		myRandomSound(1,6);
+    		Toast.makeText(getApplicationContext(), "Fehler keine valide IP Eingabe!", Toast.LENGTH_SHORT).show();
+    		break;
     	}
     	return super.onCreateDialog(id);
     }
@@ -177,10 +181,14 @@ public class Ping extends Activity{
 	
     public boolean goPing(View view){
     	EditText ip = (EditText)findViewById(R.id.EditTextPingIP);
-    	if (ip.getText().toString().isEmpty() && (checkIp(ip.getText().toString())==false)){
+    	if (ip.getText().toString().isEmpty()){
     			myRandomSound(1,6);
-    			showDialog(30);
+    			showDialog(20);
         		return false;
+    	} else if (checkIp(ip.getText().toString())==false){
+    		myRandomSound(1,6);
+			showDialog(30);
+    		return false;
     	}
     	TextView pingtext = (TextView)findViewById(R.id.textViewPingResult);
     	String message = "";
