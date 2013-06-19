@@ -22,32 +22,32 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Netmask extends Activity{
-	public MediaPlayer mp;
-	public static String SharedName = "SharedData";
+	public MediaPlayer mp;  // Deklaration für Sound wiedergabe
+	// Deklaration für Settings laden aus dem Cache
+	public static String SharedName = "SharedData"; 
 	SharedPreferences someData;
 	
-	@SuppressLint("NewApi")
+	// on Createt mir PORTRAIT Fixieren & Aufruf Methode für load settings
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.netmask);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
         loadNetmask();
     }
 		
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // Erstellt das Menü das beim Handy auf Menütaste liegt
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
  
+	// Zum Auffangen des Result Codes beim Beenden einer Child Intent
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    if(resultCode==2){
-	        setResult(2);
-	        finish();
+	        setResult(2); // falls dieses Activity ein Child ist sende Request Code
+	        finish(); // Beende Aktive Activity bzw. Intent
 	    }
 	}
 	
@@ -56,6 +56,7 @@ public class Netmask extends Activity{
     protected Dialog onCreateDialog(int id){
     	switch (id){
     	case 10:
+    		// Schließen Button aus dem Menü
     		Builder builder = new AlertDialog.Builder(this);
     		builder.setMessage("NetMan wirklich Beenden?");
     		builder.setCancelable(true);
@@ -74,6 +75,7 @@ public class Netmask extends Activity{
     		AlertDialog dialog = builder.create();
     		dialog.show();
     		break;
+    	// Dialoge mit Toast & Zufalls Sound bei Fehlern in der Eingabe des Users
     	case 20:
     		myRandomSound(1,6);
     		Toast.makeText(getApplicationContext(), "Fehler bei der IP Eingabe!", Toast.LENGTH_SHORT).show();
@@ -98,6 +100,8 @@ public class Netmask extends Activity{
     	return super.onCreateDialog(id);
     }
 	
+	// Methode Zufalls Sound die bei Fehlern gestartet wird und
+	// dann an und zu einen Sound abspielen soll
 	public void myRandomSound(int low, int high) {
 		high++;
 		Double randomNo = (Math.random() * (high - low) + low);
@@ -114,13 +118,16 @@ public class Netmask extends Activity{
 		}
 	} 
 
+	// Methode zum Prüfen ob Eingabe einer IP Entspricht
     public static boolean checkIp (String sip)
     {
         String [] parts = sip.split ("\\.");
+        // Prüft ob die Eingabe 4 Punkte mit Zeichen dazwischen hat
         if ( parts.length != 4 ){
         	return false;
         }
         for (String s : parts){
+        	// Verbot der Letzten Zeichen die ein User falsch machen kann
         	if (s.contains("(")||s.contains(")")||s.contains("N")||s.contains(",")||s.contains("#")||s.contains(";")||s.contains("+")||s.contains(" ")){
         		return false;
         	}
@@ -139,24 +146,28 @@ public class Netmask extends Activity{
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-    	// Menu actions
+    	// Menü Aktionen vom Erstellten Menü
     	if (item.toString().equals("Home")){
     		Intent home = new Intent(this, Main.class);
     		startActivityForResult(home,2);
     	}
+    	// Lädt nur eiges Layout nochmal
     	if (item.toString().equals("Network Calculator")){
     		loadNetmask();
     	}
+    	// Start ein neuen Inten
     	if (item.toString().equals("Network Tools")){
     		Intent ping = new Intent(this, Ping.class);
     		startActivityForResult(ping,2);
     	}
     	if (item.toString().equals("Schließen")){
+    		// Starte eine Dialog Message (siehe dazu passende Methode)
     		showDialog(10);
     	}
     	return true;
     }
 	
+    // Methode zum Speichern der Daten in Cache
     public void saveNetmask(){
 		//Inputs fields
     	EditText ip = (EditText)findViewById(R.id.EditTextIP);
@@ -173,6 +184,7 @@ public class Netmask extends Activity{
 		editor.commit();
 	}
 	
+    // Methode zum Laden der Daten
 	public void loadNetmask(){
 		//Inputs fields
     	EditText ip = (EditText)findViewById(R.id.EditTextIP);
@@ -340,10 +352,11 @@ public class Netmask extends Activity{
     	tvh_broadcast.setText(BinTailToHex(netbin+tmp));
     	//Ende Berechnung
     	
-    	saveNetmask();
+    	saveNetmask(); // Speicher Daten
     	return true;
     }
     
+    // Methode um einen Binären String wieder passend in 8 Bit Stücke zu Teilen
     public String splitBinary(String input, String sym){
     	String all = "";
     	String fill = "";
@@ -377,6 +390,7 @@ public class Netmask extends Activity{
     	return all;
     }
     
+    // Methode zur Umwandlung eines von uns erstellten Bin Tail Strings in Hex
     public String BinTailToHex(String tail)
     {
         String all ="";
@@ -393,6 +407,7 @@ public class Netmask extends Activity{
         return all.toUpperCase().toString();
     }
     
+ // Methode zur Umwandlung eines von uns erstellten Bin Tail Strings in Dezimal
     public String BinTailToDec(String tail)
     {
         String all ="";
@@ -409,6 +424,7 @@ public class Netmask extends Activity{
         return all;
     }
         
+    // Methode zum Resten der Eingaben die beim Aufruf des Buttons gestartet wird
     public void netmaskReset(View view){
     	//Result Data Objects
     	TextView tv_max_client = (TextView)findViewById(R.id.ResultMaxClient);

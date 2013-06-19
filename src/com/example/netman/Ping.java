@@ -22,10 +22,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Ping extends Activity{
-	public MediaPlayer mp;
+	public MediaPlayer mp; // Deklaration für Sound wiedergabe
+	// Deklaration für Settings laden aus dem Cache
 	public static String SharedName = "SharedData";
 	SharedPreferences someData;
 	
+	// on Createt mir PORTRAIT Fixieren & Aufruf Methode für load settings
+	// und setzt Android Rechte bezgl Netzwerk Zugriff
 	@SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,16 +41,17 @@ public class Ping extends Activity{
     }
 
 	public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+		// Erstellt das Menü das beim Handy auf Menütaste liegt
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
+	// Zum Auffangen des Result Codes beim Beenden einer Child Intent
 	@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    if(resultCode==2){
-	        setResult(2);
-	        finish();
+	        setResult(2); // falls dieses Activity ein Child ist sende Request Code
+	        finish(); // Beende Aktive Activity bzw. Intent
 	    }
 	}
  
@@ -56,6 +60,7 @@ public class Ping extends Activity{
     protected Dialog onCreateDialog(int id){
     	switch (id){
     	case 10:
+    		// Schließe Button aus dem Memü zum Beenden des Apps
     		Builder builder = new AlertDialog.Builder(this);
     		builder.setMessage("NetMan wirklich Beenden?");
     		builder.setCancelable(true);
@@ -74,6 +79,7 @@ public class Ping extends Activity{
     		AlertDialog dialog = builder.create();
     		dialog.show();
     		break;
+    	// Dialoge mit Toast & Zufalls Sound bei Fehlern in der User Eingabe
     	case 20:
     		myRandomSound(1,6);
     		Toast.makeText(getApplicationContext(), "Fehler bei der IP Eingabe!", Toast.LENGTH_SHORT).show();
@@ -86,6 +92,7 @@ public class Ping extends Activity{
     	return super.onCreateDialog(id);
     }
 
+    // Methode für Zufalls Sound wieder gabe bei User Fehlern
     public void myRandomSound(int low, int high) {
 		high++;
 		Double randomNo = (Math.random() * (high - low) + low);
@@ -102,13 +109,16 @@ public class Ping extends Activity{
 		}
 	}
     
+    // Methode zum Prüfen ob Eingabe einer IP Entspricht
     public static boolean checkIp (String sip)
     {
         String [] parts = sip.split ("\\.");
+        // Prüft ob 4 Punkte mit gesetzt sind
         if ( parts.length != 4 ){
         	return false;
         }
         for (String s : parts){
+        	// Prüft ob kein letztes Verbotenes Zeichen enthalten ist
         	if (s.contains("(")||s.contains(")")||s.contains("#")||s.contains(";")||s.contains("+")||s.contains(" ")){
         		return false;
         	}
@@ -127,8 +137,9 @@ public class Ping extends Activity{
  
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-    	// Menu actions
+    	// Menü das über den Handy Android Menü genutzte wird
     	if (item.toString().equals("Home")){
+    		// Starte neue Intenet bzw Activity mit Result Code für Result Request
     		Intent home = new Intent(this, Main.class);
     		startActivityForResult(home,2);
     	}
@@ -137,14 +148,17 @@ public class Ping extends Activity{
     		startActivityForResult(netmask,2);
     	}
     	if (item.toString().equals("Network Tools")){
+    		// Lade settings aus dem Cache
     		loadPing();
     	}
     	if (item.toString().equals("Schließen")){
+    		// Starte Dialog Message
     		showDialog(10);
     	}
     	return true;
     }
 	
+    // Methode zum Speichern der Settings im Cache
     public void savePing(){
 		//Inputs fields
     	EditText ip = (EditText)findViewById(R.id.EditTextPingIP);
@@ -155,6 +169,7 @@ public class Ping extends Activity{
 		editor.commit();
 	}
 	
+    // Methode zum Laden der settings aus dem Cache
 	public void loadPing(){
 		//Inputs fields
     	EditText ip = (EditText)findViewById(R.id.EditTextPingIP);
@@ -167,6 +182,7 @@ public class Ping extends Activity{
         }
 	}
 
+	// Methode zum Resten der User Eingaben
 	public void resetPing(View view){
     	//Result Data Objects
     	TextView pings = (TextView)findViewById(R.id.textViewPingResult);
@@ -181,6 +197,7 @@ public class Ping extends Activity{
 	
     public boolean goPing(View view){
     	EditText ip = (EditText)findViewById(R.id.EditTextPingIP);
+    	// Validattionscheck User Eingabe bei IP
     	if (ip.getText().toString().isEmpty()){
     			myRandomSound(1,6);
     			showDialog(20);
@@ -190,8 +207,10 @@ public class Ping extends Activity{
 			showDialog(30);
     		return false;
     	}
+    	// Ende Validationscheck
     	TextView pingtext = (TextView)findViewById(R.id.textViewPingResult);
     	String message = "";
+    	// Begin Ping
     	try {
     	      InetAddress host = InetAddress.getByName( ip.getText().toString() );
     	      for (int i=0;i<8;i++){
@@ -216,7 +235,8 @@ public class Ping extends Activity{
     		//e.printStackTrace();
     		Toast.makeText(getApplicationContext(), "Error: Ping Failed", Toast.LENGTH_SHORT).show();
     	}
-    	savePing();
+    	// Ende Ping
+    	savePing();  // Speicher Daten
     	return true;
     }
     
